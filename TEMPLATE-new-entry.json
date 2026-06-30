@@ -1,0 +1,38 @@
+{
+  "_instructions": "This is a TEMPLATE file — not loaded by the tool. Copy the object below, fill it in, and paste it into data/best-practices.json (inside the [ ] array, separated by a comma from the entry before it). Delete this _instructions field from your copy before pasting — it's only here for your reference, not a real field.",
+
+  "_valid_categories": [
+    "prompting",
+    "context",
+    "testing",
+    "architecture",
+    "workflow",
+    "collaboration",
+    "models",
+    "mindset"
+  ],
+
+  "_next_available_id": "Open data/best-practices.json, find the highest existing \"id\" value, and use the next number up. As of the last update, the highest id is 75 — so your next new entry should be 76.",
+
+  "template": {
+    "id": 61,
+    "category": "prompting",
+    "session": 3,
+    "contributor": "Full Name",
+    "title": "Short, actionable title (max ~10 words)",
+    "desc": "2–4 sentence explanation: what the practice is, why it matters, and when to use it.",
+    "tags": ["keyword1", "keyword2", "keyword3"],
+    "source": "Session 3 Demo (or wherever this came from)"
+  },
+
+  "_example_filled_in": {
+    "id": 61,
+    "category": "testing",
+    "session": 3,
+    "contributor": "Jane Smith",
+    "title": "Run a smoke test before every client demo",
+    "desc": "Five minutes before any client-facing demo, click through the three or four most common user paths in your tool. This catches the embarrassing breakages that unit tests miss — broken buttons, missing data, slow load times — before a client ever sees them.",
+    "tags": ["demo prep", "smoke test", "client readiness"],
+    "source": "Session 3 Lessons Learned"
+  }
+}

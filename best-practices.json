@@ -1,0 +1,1054 @@
+[
+  {
+    "id": 1,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Be specific about output format",
+    "desc": "Tell the LLM exactly what format you want the output in — whether that's a JSON file, a numbered list, a table, a Markdown document, or a plain paragraph. The more specific your format instruction, the more usable the output. Vague format requests produce vague outputs.",
+    "tags": [
+      "format",
+      "prompts",
+      "output"
+    ],
+    "source": "Session 1 Demo & Presentation"
+  },
+  {
+    "id": 2,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Session 1 Presentation",
+    "title": "Give the LLM a role",
+    "desc": "Assign a persona or role to the model at the start of your prompt — e.g. \"You are a PowerPoint Maestro\" or \"You are a senior Business Analyst.\" This primes the model to respond from the right perspective and with the right tone. It significantly sharpens output quality.",
+    "tags": [
+      "persona",
+      "role",
+      "prompts"
+    ],
+    "source": "Session 1 Presentation"
+  },
+  {
+    "id": 3,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Session 1 Presentation",
+    "title": "Ask for a fixed number of outputs",
+    "desc": "Constrain the model by asking for a specific quantity — e.g. \"Give me exactly 5 options\" or \"List 3 alternatives.\" This keeps the model focused and prevents long, rambling responses. Quantity constraints also make it easier to compare and evaluate the outputs you receive.",
+    "tags": [
+      "constraints",
+      "prompts",
+      "focus"
+    ],
+    "source": "Session 1 Presentation"
+  },
+  {
+    "id": 4,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Session 1 Presentation",
+    "title": "Adjust prompts when results are off — not the input data",
+    "desc": "If the output isn't right, the fix is almost always in the prompt, not the underlying data or document you provided. Refine what you're asking for, not what you're asking about. This is a key distinction: data is the raw material; prompts are the instructions.",
+    "tags": [
+      "iteration",
+      "debugging",
+      "prompts"
+    ],
+    "source": "Session 1 Presentation"
+  },
+  {
+    "id": 5,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Specificity beats length in prompts",
+    "desc": "A focused 2–3 sentence prompt that is precise and specific often outperforms a rambling paragraph. Long prompts dilute the signal. Identify the one thing you need, say it clearly, and add only the constraints and context that are truly necessary.",
+    "tags": [
+      "concise",
+      "prompts",
+      "quality"
+    ],
+    "source": "Session 1 Presentation"
+  },
+  {
+    "id": 6,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Session 1 Presentation",
+    "title": "Name the audience in your prompt",
+    "desc": "\"Write for a sceptical client\" or \"Explain this to a non-technical stakeholder\" — naming the audience immediately calibrates the model's tone, vocabulary, and level of detail. Without an audience, the model defaults to a generic middle ground that often pleases no one.",
+    "tags": [
+      "audience",
+      "tone",
+      "prompts"
+    ],
+    "source": "Session 1 Presentation"
+  },
+  {
+    "id": 7,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Session 1 Presentation",
+    "title": "Use constraints: tell the LLM what NOT to include",
+    "desc": "Specifying exclusions is just as powerful as specifying inclusions. If you don't want bullet points, technical jargon, or a particular section — say so. Constraints narrow the output space and force the model to be more targeted. \"Don't include…\" is one of the most underused prompt tools.",
+    "tags": [
+      "constraints",
+      "prompts",
+      "negative prompting"
+    ],
+    "source": "Session 1 Presentation"
+  },
+  {
+    "id": 8,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Build a personal prompt library",
+    "desc": "Save prompts that work well from the moment they produce a great result. Start a running document or note of your best prompts — prompts that produced the right format, the right tone, or solved a problem neatly. This library becomes a personal asset that speeds up every future task.",
+    "tags": [
+      "library",
+      "prompts",
+      "reuse"
+    ],
+    "source": "Session 1 Presentation"
+  },
+  {
+    "id": 9,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Use Prompt Cowboy for structure, then refine heavily",
+    "desc": "Tools like PromptCowboy.ai are great for turning a lazy one-liner into a structured prompt. However, never use the raw output directly — the tool doesn't know your context, your company, or your specific goal. Take the structure it gives you and refine it with your own context, role, and requirements. Think of it as a scaffold, not a finished product.",
+    "tags": [
+      "promptcowboy",
+      "tools",
+      "structure"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 10,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Challenge the output — even if you don't know if it's wrong",
+    "desc": "Regularly push back on what the model gives you. Even if you don't know whether the answer is correct, telling it \"that doesn't look right — what else could you do?\" forces the model to consider alternatives. The first answer is rarely the only answer. This technique surfaces better options and stress-tests assumptions.",
+    "tags": [
+      "critical thinking",
+      "quality",
+      "iteration"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 11,
+    "category": "prompting",
+    "session": 1,
+    "contributor": "Farhana Azher",
+    "title": "Start with a lazy prompt, then build on it",
+    "desc": "A lazy prompt is a rough first attempt — one or two sentences of what you want. Use it as a starting point. Then layer in context, constraints, format instructions, audience, and examples. This iterative approach is often faster than trying to write the perfect prompt from scratch.",
+    "tags": [
+      "iteration",
+      "process",
+      "prompts"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 12,
+    "category": "prompting",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Be very literal with your requirements",
+    "desc": "Nothing is assumed. If you want TT branding, say \"use TT branding.\" If you want a specific shape, say \"use only rectangles.\" AI models interpret instructions literally and will fill in any gap with their own defaults — which often aren't what you want. Precision in language leads to precision in output.",
+    "tags": [
+      "literal",
+      "requirements",
+      "clarity"
+    ],
+    "source": "Session 2 Demo"
+  },
+  {
+    "id": 13,
+    "category": "prompting",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Ask Claude to generate its own prompt for complex tasks",
+    "desc": "After brainstorming a problem in Claude Chat, ask it to produce the most efficient prompt to give to Claude Code based on the conversation so far. Claude knows what information it needs and can often generate a better-structured prompt than you would write manually — especially for technical build tasks.",
+    "tags": [
+      "meta-prompting",
+      "efficiency",
+      "Claude Code"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 14,
+    "category": "context",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Invest in setup before you start any task",
+    "desc": "Before diving into a task, invest time in configuring Claude properly: set up your Skills, define your context, establish how you want it to remember things. This upfront investment pays off massively — the model will think like you from the first message, rather than you having to re-establish context every session.",
+    "tags": [
+      "setup",
+      "skills",
+      "projects"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 15,
+    "category": "context",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Use Claude Skills as your memory layer",
+    "desc": "Skills are your way of teaching Claude how you work, what your company does, what formats you use, and what your preferences are. The more skills you add — for meeting notes, presentation templates, writing style, role context — the better it thinks like you without repeated instruction. Skills are your armoury.",
+    "tags": [
+      "skills",
+      "memory",
+      "setup"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 16,
+    "category": "context",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Open a new chat thread for each module or feature",
+    "desc": "Trying to build three things in one thread wastes hundreds of thousands of tokens. Instead, create a separate chat for each module, bug fix, or feature. Within a project, all chats share the same context — so they stay connected without being entangled. Keep conversations focused and single-purpose.",
+    "tags": [
+      "threads",
+      "tokens",
+      "efficiency"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 17,
+    "category": "context",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Create Markdown session log files",
+    "desc": "At the end of every working session with Claude, save a structured Markdown file capturing: the problem statement, what was built, architectural decisions made, and why. Create a Claude Skill that automatically generates this log on request. These logs become your working memory across sessions.",
+    "tags": [
+      "session logs",
+      "documentation",
+      "markdown"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 18,
+    "category": "context",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Build a master context file from session logs",
+    "desc": "Periodically consolidate all your session logs into a single master context file. When starting a new project, load this file into the new project context and say \"here's everything you need to know about how we work.\" You cannot carry memory between projects, but you can carry a file — and a file is more reliable than memory anyway.",
+    "tags": [
+      "context",
+      "projects",
+      "continuity"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 19,
+    "category": "context",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Think of context like briefing a new colleague",
+    "desc": "Before sending a prompt, ask yourself: if I handed this to a capable new person on their first day, would they have everything they need to do this correctly? Is there enough context? A good example of the desired output? An example of what bad looks like? If not, add more. Context engineering is at least as important as prompt engineering.",
+    "tags": [
+      "context",
+      "mental model",
+      "quality"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 20,
+    "category": "context",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Skills created mid-thread can't be read in that same thread",
+    "desc": "There is a known limitation: if you create or save a skill while a thread is already open, that existing thread cannot read the new skill. You must open a new chat for the skill to take effect. The lesson: set up all your skills before you start your working sessions, not during them.",
+    "tags": [
+      "skills",
+      "limitation",
+      "workflow"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 21,
+    "category": "context",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Spend more time on discovery before writing any code",
+    "desc": "The biggest time-waster when building with AI is going straight to \"build mode\" without a clear picture of what you want. Spend time in Claude Chat first: explore the problem, define requirements, describe the intended user experience, and identify edge cases. A clearer vision upfront saves iterations, tokens, and frustration.",
+    "tags": [
+      "discovery",
+      "requirements",
+      "process"
+    ],
+    "source": "Session 2 Lessons Learned"
+  },
+  {
+    "id": 22,
+    "category": "testing",
+    "session": 1,
+    "contributor": "Megan Robertson",
+    "title": "Use a standard regression testing prompt after every build",
+    "desc": "After completing any significant build or feature addition, use the prompt: \"Do a full regression and system use case testing, find bugs and fix it.\" This single instruction has Claude methodically check for broken behaviour, edge cases, and interaction bugs — catching issues that would otherwise only surface in production.",
+    "tags": [
+      "regression",
+      "testing",
+      "bugs"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 23,
+    "category": "testing",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Ask Claude to write its own regression tests",
+    "desc": "After every new feature, ask Claude to write regression tests that cover the new behaviour AND verify that all previously working behaviour still passes. Claude is meticulous about this when explicitly asked. v5 of the Process Map Studio had 115 automated checks covering DOM events, rendered SVG, history round-trip, and XSS injection guards.",
+    "tags": [
+      "regression",
+      "automated tests",
+      "Claude Code"
+    ],
+    "source": "Session 2 Demo & Presentation"
+  },
+  {
+    "id": 24,
+    "category": "testing",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Visual QA is essential — even when all unit tests pass",
+    "desc": "Unit tests confirm logic; they cannot confirm that things look right. After every iteration, rasterise your output and inspect it visually. In the Process Map Studio, all 110 unit tests passed in v4 — but long text descriptions were still wrapping into cramped 5-line boxes, invisible to logic tests. Always render and look.",
+    "tags": [
+      "visual QA",
+      "testing",
+      "rendering"
+    ],
+    "source": "Session 2 Lessons Learned"
+  },
+  {
+    "id": 25,
+    "category": "testing",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Maintain a test log as a living audit trail",
+    "desc": "Store all test cases, outcomes, and fixes in Claude's session logs. If you ask Claude to pull out all test cases, it should be able to tell you what was tested, why, what the outcome was, and what the fix was. This isn't just for quality — it's an audit trail that protects the business if someone leaves.",
+    "tags": [
+      "audit",
+      "documentation",
+      "testing"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 26,
+    "category": "testing",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Ask \"why is this happening?\" before trying to fix it",
+    "desc": "When a bug appears, resist the urge to diagnose it yourself and hand Claude a solution to implement. Instead, ask \"why is this not working?\" Let Claude diagnose the root cause. It will often identify something you missed, and the fix it applies will be more targeted and less likely to break something else.",
+    "tags": [
+      "debugging",
+      "root cause",
+      "bugs"
+    ],
+    "source": "Session 2 Demo"
+  },
+  {
+    "id": 27,
+    "category": "testing",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Lock in working state before adding new features",
+    "desc": "Every version should follow this discipline: add a feature → run the full regression suite → confirm everything is green → only then start the next feature. This sounds slow but is what makes a build feel fast. Skipping this step leads to accumulating technical debt and debugging ten things at once.",
+    "tags": [
+      "discipline",
+      "versioning",
+      "process"
+    ],
+    "source": "Session 2 Presentation"
+  },
+  {
+    "id": 28,
+    "category": "testing",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Provide screenshots when Claude can't see the rendered output",
+    "desc": "When doing visual QA, Claude cannot see how the browser is actually rendering the output. Take a screenshot and upload it. Say \"this is what it looks like — fix it.\" This closes the feedback loop and allows Claude to identify visual issues it could never catch from the code alone.",
+    "tags": [
+      "visual QA",
+      "screenshots",
+      "feedback"
+    ],
+    "source": "Session 2 Q&A"
+  },
+  {
+    "id": 29,
+    "category": "architecture",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Organise your data BEFORE you build anything",
+    "desc": "Identify all your data sources upfront: which are APIs, which are static files, which need manual updates. Organise them and understand their formats before writing a single line of code. Building on messy or incomplete data leads to iterating on architecture mid-build, which is expensive in both time and tokens.",
+    "tags": [
+      "data",
+      "planning",
+      "architecture"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 30,
+    "category": "architecture",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Use GitHub as a centralised file backend",
+    "desc": "Without a centralised data strategy, files scatter across hard drives, SharePoints, and personal folders. GitHub is a universally accepted, low-cost file backend. Create a TT repository, push all your data files there, and set up a render file to keep it updated. It's safe, version-controlled, and eliminates the \"where's the latest version?\" problem.",
+    "tags": [
+      "GitHub",
+      "data",
+      "infrastructure"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 31,
+    "category": "architecture",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Research hosting platforms before committing to one",
+    "desc": "Hosting decisions matter. Render has pipeline minute limits — you can run out of free compute within a week if you're pushing frequently. Fly.io is always-on and doesn't go to sleep after inactivity. Netlify is ideal for static HTML tools. Understand the pricing model, sleep behaviour, and deployment workflow before you start hosting anything.",
+    "tags": [
+      "hosting",
+      "Netlify",
+      "Fly.io",
+      "Render"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 32,
+    "category": "architecture",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Maintain a local dev environment before pushing to live",
+    "desc": "Don't deploy every small change to your live environment — maintain a local development setup. Test and validate locally first, then push to live only when you're confident. This preserves your deployment pipeline minutes (on platforms like Render) and protects your live users from half-baked changes.",
+    "tags": [
+      "dev environment",
+      "deployment",
+      "workflow"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 33,
+    "category": "architecture",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Use JSON as the intermediate format between AI and your tool",
+    "desc": "When building a pipeline where Claude extracts structured information from a document, use JSON as the intermediate format. Claude generates a schema-validated JSON file; your front-end HTML tool consumes and renders it. This clean separation means you can improve either side independently and the interface between them stays stable.",
+    "tags": [
+      "JSON",
+      "architecture",
+      "pipeline"
+    ],
+    "source": "Session 2 Demo"
+  },
+  {
+    "id": 34,
+    "category": "architecture",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Use Mermaid format for Figma / Miro exports",
+    "desc": "When exporting process maps or diagrams to Figma or Miro, use Mermaid format as the export target. Figma's REST API cannot create canvas objects from a browser (regardless of CORS settings), but the Mermaid-to-FigJam plugin works reliably. SVG is the native Figma format; PNG is for raster uses; PDF is for client decks.",
+    "tags": [
+      "Mermaid",
+      "Figma",
+      "Miro",
+      "export"
+    ],
+    "source": "Session 2 Demo & Presentation"
+  },
+  {
+    "id": 35,
+    "category": "architecture",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Demand reproducibility — keep tools in single deployable files",
+    "desc": "The whole tool should be one file that can be shared, opened, and re-run by anyone. The whole prompt to Claude should be one structured request. No \"works on my machine\" drift. If it requires a 10-step setup process, it won't survive the first team handover. Simplicity in architecture is a feature, not a compromise.",
+    "tags": [
+      "reproducibility",
+      "simplicity",
+      "deployment"
+    ],
+    "source": "Session 2 Presentation"
+  },
+  {
+    "id": 36,
+    "category": "architecture",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Use Claude Design for mock-ups before writing code",
+    "desc": "Use Claude Design to upload screenshots, colour palettes, and templates. Let it do the design work and produce mock-ups. Then bring those mock-ups into Claude Code and say \"use Bootstrap to follow this colour palette and recreate this design in code.\" This approach separates design thinking from implementation and produces better results for both.",
+    "tags": [
+      "Claude Design",
+      "mock-ups",
+      "Bootstrap"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 37,
+    "category": "workflow",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Follow the Chat → Design → Code workflow",
+    "desc": "Use Claude Chat for all brainstorming and discovery. Move to Claude Design for mock-ups and visual design. Only then go to Claude Code for the actual build. Skipping Chat and going straight to Code means you're building without a plan. The investment in Chat is always recovered in fewer Code iterations.",
+    "tags": [
+      "workflow",
+      "Claude",
+      "process"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 38,
+    "category": "workflow",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Iterate in small numbered versions",
+    "desc": "Instead of one big build, create multiple small numbered versions: v1, v2, v3. Each version adds one feature or improvement. Each version must be stable before the next begins. This approach means you always have a working fallback and you never have to debug ten things at once. Name each version so you can roll back.",
+    "tags": [
+      "versioning",
+      "iteration",
+      "process"
+    ],
+    "source": "Session 2 Demo"
+  },
+  {
+    "id": 39,
+    "category": "workflow",
+    "session": 2,
+    "contributor": "Nav Gill",
+    "title": "Never send AI-generated output to clients without review",
+    "desc": "AI output is always a first draft. It must be reviewed, validated, and refined by a qualified team member before it reaches a client. This applies to process maps, presentations, analysis, and any written content. The professional judgement, context, and domain knowledge that makes output client-ready still comes from you.",
+    "tags": [
+      "client work",
+      "quality",
+      "review"
+    ],
+    "source": "Session 2 Q&A"
+  },
+  {
+    "id": 40,
+    "category": "workflow",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Sanity-check ideas in Chat before going to Code",
+    "desc": "Before starting a new build, describe the problem to Claude Chat and ask it to play back what you're trying to achieve. Ask it to challenge your approach. If the model can't explain your plan back to you clearly, it doesn't have enough context to build it correctly. This 10-minute check saves hours of misaligned code.",
+    "tags": [
+      "planning",
+      "chat",
+      "process"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 41,
+    "category": "workflow",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Ask Claude \"why before how\" when something fails",
+    "desc": "When a feature fails or a bug appears, ask Claude to diagnose the root cause before asking it to apply a fix. \"Why is this not working?\" often reveals an architectural issue, a wrong assumption, or a simpler solution that rewriting the code would have missed. A good diagnosis is more valuable than a quick fix.",
+    "tags": [
+      "debugging",
+      "root cause",
+      "process"
+    ],
+    "source": "Session 2 Presentation"
+  },
+  {
+    "id": 42,
+    "category": "collaboration",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Share knowledge and ask for advice — proactively",
+    "desc": "A significant proportion of the breakthroughs in the Process Map Studio came from conversations with team members — Raheem, Megan, Kiran, and a data architect friend. If you're stuck, ask. If you've solved something, share it. The collective knowledge of the team accelerates individual progress dramatically.",
+    "tags": [
+      "knowledge sharing",
+      "team",
+      "collaboration"
+    ],
+    "source": "Session 2 Lessons Learned"
+  },
+  {
+    "id": 43,
+    "category": "collaboration",
+    "session": 2,
+    "contributor": "Mack Smith",
+    "title": "Test AI tools internally for 3–6 months before client use",
+    "desc": "Before any AI-generated tool or output reaches a client, it should be used, tested, and refined internally for at least 3–6 months. The team needs to be genuinely comfortable with it, understand its limitations, and be able to explain it confidently. Internal use is your testing ground; clients deserve polished products.",
+    "tags": [
+      "client readiness",
+      "adoption",
+      "internal use"
+    ],
+    "source": "Session 2 Q&A"
+  },
+  {
+    "id": 44,
+    "category": "collaboration",
+    "session": 2,
+    "contributor": "Nav Gill",
+    "title": "Treat Claude like a junior BA",
+    "desc": "Approach Claude as you would a capable but inexperienced junior Business Analyst on their first week. Ask it to crunch these numbers, have a look at this document, give me a first draft. Review and iterate its outputs just as you would review a junior's work. Build confidence in the output incrementally before relying on it for high-stakes tasks.",
+    "tags": [
+      "mental model",
+      "BA",
+      "trust"
+    ],
+    "source": "Session 2 Q&A"
+  },
+  {
+    "id": 45,
+    "category": "collaboration",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Have Claude act as a BA and take your requirements",
+    "desc": "Try a different dynamic: instead of instructing Claude to build, present yourself as the client and ask Claude to act as the BA taking your requirements. Let it ask clarifying questions. This process surfaces gaps in your own thinking and often produces a better brief than you would have written alone.",
+    "tags": [
+      "requirements",
+      "BA",
+      "role reversal"
+    ],
+    "source": "Session 2 Demo"
+  },
+  {
+    "id": 46,
+    "category": "collaboration",
+    "session": 1,
+    "contributor": "Farhana Azher",
+    "title": "Use AI to process and extract learnings from meeting transcripts",
+    "desc": "Don't let the insights from training sessions and workshops live only in recordings. Use AI to process meeting transcripts and extract key learnings, decisions, and best practices. This is exactly what the TTMATION Knowledge System is built on. AI for AI — let the tools do the knowledge management.",
+    "tags": [
+      "transcripts",
+      "knowledge management",
+      "automation"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 47,
+    "category": "collaboration",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Try different things — not everything needs to come from you",
+    "desc": "The switch from Python + Figma API to Mermaid format came from a data architect friend. The regression testing prompt came from Megan. The JSON architecture came from Claude. You don't need to invent everything. Be open to approaches that come from unexpected sources — tools, team members, domain experts, and the AI itself.",
+    "tags": [
+      "openness",
+      "ideas",
+      "team"
+    ],
+    "source": "Session 2 Demo"
+  },
+  {
+    "id": 48,
+    "category": "models",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Use Sonnet for coding — not Opus",
+    "desc": "Claude Sonnet handles coding tasks extremely well and is far more token-efficient than Opus. For writing, editing, debugging, and building code, Sonnet is the right choice. Switching to Opus for coding tasks will consume your token allowance within a few prompts without providing meaningfully better results.",
+    "tags": [
+      "Sonnet",
+      "Opus",
+      "tokens"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 49,
+    "category": "models",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Reserve Opus for deep reasoning tasks only",
+    "desc": "Claude Opus is the right tool for tasks that genuinely require deep analytical reasoning — complex M&A due diligence, multi-dimensional data analysis, or synthesising large volumes of nuanced information. For standard consulting and coding tasks, Opus is overkill and will drain your token budget rapidly. Use Opus deliberately.",
+    "tags": [
+      "Opus",
+      "reasoning",
+      "model selection"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 50,
+    "category": "models",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Use Opus for the build phase, return to Sonnet for iteration",
+    "desc": "One effective pattern is starting builds with Opus (especially for design-heavy or complex initial architectures) to get a strong foundation, then switching back to Sonnet for all subsequent iterations, bug fixes, and feature additions. This balances quality of foundation with efficiency of iteration.",
+    "tags": [
+      "Opus",
+      "Sonnet",
+      "strategy"
+    ],
+    "source": "Session 2 Demo"
+  },
+  {
+    "id": 51,
+    "category": "models",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Monitor token usage — running out mid-session stops your work",
+    "desc": "Token budgets are a real constraint. Running out mid-build — especially when you're in the middle of a complex regression or feature — is disruptive and can leave code in an unstable state. Be mindful of token-heavy operations (regression testing, large context windows, Opus usage) and plan your sessions accordingly.",
+    "tags": [
+      "tokens",
+      "Opus",
+      "planning"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 52,
+    "category": "mindset",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "Automate the mundane — invest time in what makes you unique",
+    "desc": "IKEA replaced its customer service chatbot capacity not by firing staff, but by retraining them into interior design — creating a new multi-million dollar revenue stream. Apply the same logic at TT: automate the repeatable and time-consuming, then reinvest that time into the high-value consulting, strategy, and relationship work that only humans can do.",
+    "tags": [
+      "automation",
+      "strategy",
+      "value"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 53,
+    "category": "mindset",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "You don't need to understand the code — you need to validate the output",
+    "desc": "You don't need to be a developer to build with AI. What you need is a rigorous approach to validating whether the output does what it needs to do. Design good test cases, run them, check the results. The code is Claude's responsibility; the outcomes are yours. Validate through testing, not through reading the code.",
+    "tags": [
+      "non-technical",
+      "validation",
+      "testing"
+    ],
+    "source": "Session 1 Demo"
+  },
+  {
+    "id": 54,
+    "category": "mindset",
+    "session": 1,
+    "contributor": "Session 1 Presentation",
+    "title": "Read outputs critically — never copy straight into a deliverable",
+    "desc": "Every AI output must pass through your professional judgement before it reaches a client or stakeholder. Read it. Check the logic. Verify the facts. Look for subtle errors in framing or emphasis that seem plausible but are wrong. AI generates at speed; quality control is your job.",
+    "tags": [
+      "critical review",
+      "quality",
+      "deliverables"
+    ],
+    "source": "Session 1 Presentation"
+  },
+  {
+    "id": 55,
+    "category": "mindset",
+    "session": 1,
+    "contributor": "Raheem Jivraj",
+    "title": "You get out what you put in — context drives quality",
+    "desc": "Generic inputs produce generic outputs. If you give Claude a vague prompt with no company context, no role definition, and no format specification, you'll get a generic answer that could apply to anyone. The quality of AI output is directly proportional to the quality of your input. Invest in your context and prompts.",
+    "tags": [
+      "quality",
+      "context",
+      "inputs"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 56,
+    "category": "mindset",
+    "session": 2,
+    "contributor": "Mack Smith",
+    "title": "The learning curve IS the ROI at the early stage",
+    "desc": "In the early adoption phase, the primary return on investment isn't the tool you built — it's the capability you developed. Knowing how to interact with AI effectively, understanding what it's good at, and being able to build confidently are skills that compound over time. Measure success by what you've learned, not just what you've shipped.",
+    "tags": [
+      "adoption",
+      "ROI",
+      "learning"
+    ],
+    "source": "Session 2 Q&A"
+  },
+  {
+    "id": 57,
+    "category": "mindset",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "The mindset shift matters as much as the technical skills",
+    "desc": "Moving from \"I'm nervous to try something new with AI\" to \"I wonder what I can do with this\" is one of the most important transitions in your adoption journey. It unlocks faster learning, more experimentation, and a willingness to share what you've built. Celebrate the shift in mindset, not just the tools built.",
+    "tags": [
+      "mindset",
+      "adoption",
+      "confidence"
+    ],
+    "source": "Session 2 Demo"
+  },
+  {
+    "id": 58,
+    "category": "mindset",
+    "session": 2,
+    "contributor": "Nav Gill",
+    "title": "AI is a tool that helps you go faster — not a replacement for expertise",
+    "desc": "AI gets you to a starting point faster. The editing, the judgement, the domain knowledge, the client relationship — those still require a qualified consultant. A process map needs reviewing. An analysis needs validating. AI removes the painful creation of the first version, not the professional ownership of the final version.",
+    "tags": [
+      "expertise",
+      "quality",
+      "role of AI"
+    ],
+    "source": "Session 2 Q&A"
+  },
+  {
+    "id": 59,
+    "category": "mindset",
+    "session": 2,
+    "contributor": "Farhana Azher",
+    "title": "Diversify your AI tool usage during early adoption",
+    "desc": "Rather than mandating one tool for the whole team, allow individuals to experiment with different models — Claude, ChatGPT, Gemini. Transferable learning happens across models; what you learn about prompting in one translates to another. Diversity of experience also creates diversity of knowledge within the team.",
+    "tags": [
+      "tools",
+      "adoption",
+      "diversity"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 60,
+    "category": "mindset",
+    "session": 2,
+    "contributor": "Team Discussion",
+    "title": "Build small, modular tools — not world domination projects",
+    "desc": "It's easy to start a tool and find yourself thinking about automating the entire company. Resist this. Small, modular, well-tested tools that solve a specific problem are more valuable and more achievable than large monolithic systems. Build the thing that helps you this week. Scale it once it proves its worth.",
+    "tags": [
+      "scope",
+      "focus",
+      "strategy"
+    ],
+    "source": "Session 1 Q&A"
+  },
+  {
+    "id": 61,
+    "category": "architecture",
+    "session": 3,
+    "contributor": "Kiran Kaur",
+    "title": "Keep complex multi-feature tools as separate, focused builds",
+    "desc": "An ROI calculator kept crashing when it was combined into the same tool as a roadmap generator and prioritisation matrix. Splitting complex calculation logic into its own separate build, rather than bundling everything into one mega-tool, keeps each piece stable and far easier to debug.",
+    "tags": [
+      "modularity",
+      "debugging",
+      "architecture"
+    ],
+    "source": "Session 3 Demo"
+  },
+  {
+    "id": 62,
+    "category": "prompting",
+    "session": 3,
+    "contributor": "Kiran Kaur",
+    "title": "Build the logic in Excel first, then upload it to Claude",
+    "desc": "If you're comfortable in Excel, build your calculation or formula logic there first - referencing specific cells - then upload the spreadsheet to Claude and ask it to replicate the same logic in your tool. This gives Claude a concrete, verified source of truth to copy rather than guessing at formulas from a description.",
+    "tags": [
+      "excel",
+      "source of truth",
+      "formulas"
+    ],
+    "source": "Session 3 Demo"
+  },
+  {
+    "id": 63,
+    "category": "testing",
+    "session": 3,
+    "contributor": "Kiran Kaur",
+    "title": "Test new tools on a genuinely new use case before trusting them",
+    "desc": "A tool that worked well on one client's data isn't proven until it has been run against a completely fresh use case. Testing on a use case where the underlying analysis was already done makes the tool look easier than it will be on day one of a real, untested engagement.",
+    "tags": [
+      "testing",
+      "transferability",
+      "validation"
+    ],
+    "source": "Session 3 Q&A"
+  },
+  {
+    "id": 64,
+    "category": "mindset",
+    "session": 3,
+    "contributor": "Kiran Kaur",
+    "title": "If you can't explain how a tool works, it loses credibility",
+    "desc": "Be able to explain the mechanics behind a deliverable - what data feeds it, how the logic works - especially before sharing with a client. If a strange technical artefact or output can't be explained, it undermines trust in everything built around it, even if the rest of the work was sound.",
+    "tags": [
+      "credibility",
+      "explainability",
+      "client trust"
+    ],
+    "source": "Session 3 Q&A"
+  },
+  {
+    "id": 65,
+    "category": "architecture",
+    "session": 3,
+    "contributor": "Kiran Kaur",
+    "title": "Link related tools through shared data instead of manual updates",
+    "desc": "A roadmap generator and a prioritisation matrix were linked by opportunity number, so moving an item in one tool automatically updated the other. Wiring related tools together through shared data eliminates the manual re-entry and sync errors that come from keeping multiple standalone documents in step by hand.",
+    "tags": [
+      "linked data",
+      "automation",
+      "roadmap"
+    ],
+    "source": "Session 3 Demo"
+  },
+  {
+    "id": 66,
+    "category": "collaboration",
+    "session": 3,
+    "contributor": "Daniel Selwyn",
+    "title": "Store finished tools centrally so they become reusable team assets",
+    "desc": "Once a tool is built and proven, store it in a central, accessible place rather than leaving it on one person's machine. This turns individual experiments into shared team capability, and gives new starters or other engagements a concrete example of what good looks like.",
+    "tags": [
+      "knowledge sharing",
+      "central repository",
+      "reuse"
+    ],
+    "source": "Session 3 Q&A"
+  },
+  {
+    "id": 67,
+    "category": "mindset",
+    "session": 3,
+    "contributor": "Daniel Selwyn",
+    "title": "Apply the 'same or less effort' test before trusting a tool",
+    "desc": "Before relying on an AI-built tool over doing the task manually, ask honestly: is this as good as what I could do myself, in the same or less time? If a tool takes longer or produces a worse result than the manual approach, it isn't ready to use yet, no matter how impressive the build looks.",
+    "tags": [
+      "quality bar",
+      "validation",
+      "mindset"
+    ],
+    "source": "Session 3 Q&A"
+  },
+  {
+    "id": 68,
+    "category": "architecture",
+    "session": 4,
+    "contributor": "Megan Robertson",
+    "title": "Host your data separately from your HTML front-end for security",
+    "desc": "Keep client and acquisition-sensitive data out of the HTML file itself by storing it in SharePoint or Dataverse within your Microsoft 365 tenancy, with the HTML purely as the interface. This means a hosting platform like Netlify never holds sensitive data - only the presentation layer - significantly reducing your security exposure.",
+    "tags": [
+      "security",
+      "SharePoint",
+      "Dataverse"
+    ],
+    "source": "Session 4 Demo"
+  },
+  {
+    "id": 69,
+    "category": "architecture",
+    "session": 4,
+    "contributor": "Megan Robertson",
+    "title": "Prefer SharePoint queryable lists over content blocks for structured data",
+    "desc": "SharePoint lists can store data as either queryable columns or as a single content block (JSON blob). Queryable data takes longer to set up but enables bulk editing, filtering, and tagging directly in SharePoint. Content blocks are faster to set up but become fragile once you start adding features - choose queryable data if you expect the tool to grow.",
+    "tags": [
+      "SharePoint",
+      "data structure",
+      "scalability"
+    ],
+    "source": "Session 4 Demo"
+  },
+  {
+    "id": 70,
+    "category": "architecture",
+    "session": 4,
+    "contributor": "Megan Robertson",
+    "title": "Skip Dataverse unless you genuinely need relational tables",
+    "desc": "Dataverse offers row-level security and complex relational data, but for simple content-block storage it adds setup time without real benefit. One team built five Dataverse tables only for Claude to pivot to a content blob mid-build - a sign that a simpler SharePoint list is usually sufficient unless you specifically need Dataverse's relational features.",
+    "tags": [
+      "Dataverse",
+      "SharePoint",
+      "simplicity"
+    ],
+    "source": "Session 4 Lessons Learned"
+  },
+  {
+    "id": 71,
+    "category": "mindset",
+    "session": 4,
+    "contributor": "Megan Robertson",
+    "title": "Claude should surface decisions, not make them unilaterally",
+    "desc": "When Claude proposes a significant architectural pivot mid-build - like switching from Dataverse tables to a content blob - it should explain its reasoning and let you confirm before proceeding, rather than just making the change. Set this expectation explicitly: Claude surfaces options and tradeoffs, you make the call.",
+    "tags": [
+      "decision-making",
+      "prompting",
+      "control"
+    ],
+    "source": "Session 4 Demo"
+  },
+  {
+    "id": 72,
+    "category": "workflow",
+    "session": 4,
+    "contributor": "Megan Robertson",
+    "title": "Always strip hard-coded test data out of HTML before sharing",
+    "desc": "During development it's easy to leave sample or placeholder data hard-coded directly into the HTML file. Before sharing a tool - even internally - strip this out so nothing sensitive or inaccurate is exposed once someone else opens the file, signs in, or inspects the source.",
+    "tags": [
+      "security",
+      "cleanup",
+      "hygiene"
+    ],
+    "source": "Session 4 Demo"
+  },
+  {
+    "id": 73,
+    "category": "collaboration",
+    "session": 4,
+    "contributor": "Megan Robertson",
+    "title": "Invest in a reusable skill rather than rebuilding from scratch each time",
+    "desc": "Rather than copying an old client's tool and stripping out their branding and data, build a standing Claude Skill that captures lessons learned, then build each new client's tool fresh from that skill. It's faster and avoids the bugs and leftover artefacts that come from repeatedly modifying a copy of a copy.",
+    "tags": [
+      "skills",
+      "reusability",
+      "efficiency"
+    ],
+    "source": "Session 4 Lessons Learned"
+  },
+  {
+    "id": 74,
+    "category": "mindset",
+    "session": 4,
+    "contributor": "Megan Robertson",
+    "title": "Treat AI output as roughly 80% there, not the finished product",
+    "desc": "AI-assisted builds get you to a strong starting point faster, but they still rely on your own attention to detail and quality bar to get across the line. Treat the output as a strong first draft, not a finished deliverable, and apply the same QA rigour you would to any human-produced work before it goes out.",
+    "tags": [
+      "QA",
+      "quality bar",
+      "mindset"
+    ],
+    "source": "Session 4 Q&A"
+  },
+  {
+    "id": 75,
+    "category": "workflow",
+    "session": 4,
+    "contributor": "Megan Robertson",
+    "title": "Secure shared links even before single sign-on is in place",
+    "desc": "A free hosting platform's public URL can be found or shared further than intended. Before relying on SSO alone, add a basic layer of protection - even simple username and password credentials - so that client or acquisition-sensitive tools aren't accessible to anyone who stumbles on the link.",
+    "tags": [
+      "security",
+      "hosting",
+      "access control"
+    ],
+    "source": "Session 4 Q&A"
+  }
+]
