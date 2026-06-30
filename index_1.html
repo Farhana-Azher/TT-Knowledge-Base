@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TTMATION Knowledge System · Transform Together</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ── CSS VARIABLES ──────────────────────────────────────────── */
+  :root {
+    --black:        #100000;
+    --dark:         #190505;
+    --card-bg:      #1F0808;
+    --card-hover:   #260B0B;
+    --border:       #2E1010;
+    --border-light: #3D1616;
+    --gold:         #62D5B6;
+    --gold-light:   #83E4C9;
+    --gold-dim:     #3A8C78;
+    --gold-glow:    rgba(98,213,182,0.10);
+    --ash:          #7A7876;
+    --ash-light:    #A8A5A2;
+    --text-primary: #F2F0EE;
+    --text-secondary:#9E9C9A;
+    --text-muted:   #635F5C;
+    --white:        #FFFFFF;
+    --danger:       #E05050;
+    --success:      #62D5B6;
+    --tag-bg:       rgba(98,213,182,0.08);
+  }
+
+  /* ── RESET & BASE ───────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  button { cursor: pointer; font-family: inherit; border: none; background: none; }
+  input, select, textarea { font-family: inherit; }
+  ::selection { background: var(--gold); color: var(--black); }
+
+  /* ── SCROLLBAR ──────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+  /* ── HEADER ─────────────────────────────────────────────────── */
+  .header {
+    background: var(--dark);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 32px;
+  }
+  .header-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 24px;
+  }
+  .logo-area {
+    display: flex; align-items: center; gap: 16px;
+    flex-shrink: 0;
+  }
+  .logo-tt {
+    display: flex; align-items: center;
+    padding-right: 16px;
+    border-right: 1px solid var(--border-light);
+  }
+  .logo-img {
+    height: 34px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+  .ttmation-badge {
+    display: flex; flex-direction: column;
+  }
+  .ttmation-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    color: var(--gold); text-transform: uppercase;
+  }
+  .ttmation-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--text-primary); line-height: 1;
+  }
+  .header-actions {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .btn-add {
+    background: var(--gold);
+    color: var(--black);
+    font-size: 13px; font-weight: 600;
+    padding: 9px 20px; border-radius: 6px;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+  }
+  .btn-add:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-add:active { transform: translateY(0); }
+  .btn-add:disabled { opacity: 0.4 !important; cursor: not-allowed !important; transform: none !important; background: var(--gold) !important; }
+  .btn-bookmarks {
+    color: var(--ash-light);
+    font-size: 13px; font-weight: 500;
+    padding: 9px 14px; border-radius: 6px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .btn-bookmarks:hover { border-color: var(--gold-dim); color: var(--gold); }
+  .btn-bookmarks.active { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+  .bookmark-count {
+    background: var(--gold); color: var(--black);
+    font-size: 11px; font-weight: 700;
+    padding: 1px 6px; border-radius: 10px;
+    display: none;
+  }
+  .bookmark-count.visible { display: inline; }
+
+  /* ── HERO / STATS ───────────────────────────────────────────── */
+  .hero {
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
+    padding: 40px 32px 32px;
+  }
+  .hero-inner {
+    max-width: 1400px; margin: 0 auto;
+  }
+  .hero-top {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 32px; gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 300;
+    color: var(--white); line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .hero-heading span { color: var(--gold); font-weight: 500; }
+  .hero-desc {
+    color: var(--text-secondary); font-size: 14px; margin-top: 8px;
+    max-width: 520px; line-height: 1.7;
+  }
+  .stats-row {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 28px;
+    min-width: 130px;
+    position: relative; overflow: hidden;
+  }
+  .stat-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+  }
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px; font-weight: 600;
+    color: var(--gold); line-height: 1;
+    letter-spacing: -1px;
+  }
+  .stat-label {
+    font-size: 11px; font-weight: 500;
+    color: var(--ash); text-transform: uppercase;
+    letter-spacing: 1px; margin-top: 4px;
+  }
+
+  /* ── CONTROLS ───────────────────────────────────────────────── */
+  .controls {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border);
+    background: var(--black);
+    position: sticky; top: 68px; z-index: 90;
+  }
+  .controls-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; gap: 12px; align-items: center;
+    flex-wrap: wrap;
+  }
+  .search-wrap {
+    flex: 1; min-width: 220px; max-width: 380px;
+    position: relative;
+  }
+  .search-icon {
+    position: absolute; left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--ash); pointer-events: none;
+    font-size: 15px;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px 10px 38px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { outline: none; border-color: var(--gold-dim); }
+  .search-input::placeholder { color: var(--text-muted); }
+  .filter-select {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--ash-light);
+    font-size: 13px; font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    min-width: 140px;
+  }
+  .filter-select:focus { outline: none; border-color: var(--gold-dim); }
+  .filter-select option { background: var(--dark); }
+  .controls-right {
+    display: flex; gap: 8px; align-items: center;
+    margin-left: auto;
+  }
+  .results-count {
+    font-size: 12px; color: var(--text-muted);
+    white-space: nowrap; padding-right: 8px;
+  }
+  .view-toggle {
+    display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  }
+  .view-btn {
+    padding: 8px 12px;
+    color: var(--ash);
+    font-size: 14px;
+    transition: all 0.2s;
+    background: var(--card-bg);
+  }
+  .view-btn:hover { color: var(--text-primary); }
+  .view-btn.active { background: var(--gold); color: var(--black); }
+  .sort-select {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--ash-light);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .sort-select:focus { outline: none; border-color: var(--gold-dim); }
+  .sort-select option { background: var(--dark); }
+
+  /* ── ACTIVE FILTERS ─────────────────────────────────────────── */
+  .active-filters {
+    padding: 10px 32px;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    background: var(--black);
+    border-bottom: 1px solid var(--border);
+  }
+  .active-filters:empty { display: none; }
+  .filter-chip {
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 12px; font-weight: 500;
+    padding: 4px 10px 4px 10px;
+    border-radius: 20px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .filter-chip button { color: var(--gold); font-size: 13px; line-height: 1; }
+  .clear-all {
+    color: var(--text-muted); font-size: 12px;
+    text-decoration: underline;
+    margin-left: 4px;
+  }
+  .clear-all:hover { color: var(--ash-light); }
+
+  /* ── MAIN CONTENT ───────────────────────────────────────────── */
+  .main {
+    max-width: 1400px; margin: 0 auto;
+    padding: 28px 32px 60px;
+  }
+
+  /* ── CATEGORY SECTION HEADERS ───────────────────────────────── */
+  .category-section { margin-bottom: 36px; }
+  .category-heading {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .category-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .cat-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500;
+    color: var(--text-primary);
+  }
+  .cat-count {
+    font-size: 12px; color: var(--ash);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 2px 9px; border-radius: 20px;
+    margin-left: 4px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── CARD GRID ──────────────────────────────────────────────── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+  .list-grid .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* ── BEST PRACTICE CARD ─────────────────────────────────────── */
+  .bp-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex; flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
+    position: relative;
+    cursor: default;
+  }
+  .bp-card:hover {
+    border-color: var(--border-light);
+    background: var(--card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .bp-card.bookmarked {
+    border-color: var(--gold-dim);
+  }
+  .bp-card.bookmarked::after {
+    content: '';
+    position: absolute; top: 0; right: 20px;
+    width: 2px; height: 18px;
+    background: var(--gold);
+    border-radius: 0 0 2px 2px;
+  }
+  .card-top {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+  }
+  .cat-badge {
+    font-size: 10px; font-weight: 600; letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 4px 10px; border-radius: 20px;
+    flex-shrink: 0;
+  }
+  .card-actions {
+    display: flex; gap: 6px; align-items: center; flex-shrink: 0;
+  }
+  .bookmark-btn {
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .bookmark-btn:hover { color: var(--gold); background: var(--gold-glow); }
+  .bookmark-btn.active { color: var(--gold); }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; font-weight: 600;
+    color: var(--white); line-height: 1.3;
+    flex: 1;
+  }
+  .card-desc {
+    font-size: 13.5px; color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; flex-wrap: wrap;
+    margin-top: auto;
+  }
+  .card-meta {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .meta-pill {
+    font-size: 11px; color: var(--ash);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px; border-radius: 20px;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .meta-pill svg { flex-shrink: 0; }
+  .card-tags {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 11px; color: var(--gold);
+    background: var(--tag-bg);
+    border: 1px solid rgba(98,213,182,0.2);
+    padding: 2px 8px; border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .tag:hover { background: rgba(98,213,182,0.2); }
+  .rating-area {
+    display: flex; align-items: center; gap: 4px;
+  }
+  .star-btn {
+    font-size: 16px; color: var(--border-light);
+    transition: color 0.15s, transform 0.1s;
+    line-height: 1; padding: 2px;
+  }
+  .star-btn:hover { transform: scale(1.2); }
+  .star-btn.filled { color: var(--gold); }
+  .rating-avg {
+    font-size: 11px; color: var(--ash);
+    margin-left: 2px;
+  }
+
+  /* ── LIST VIEW OVERRIDES ────────────────────────────────────── */
+  .list-view .bp-card {
+    flex-direction: row; align-items: flex-start;
+    padding: 16px 20px; gap: 20px;
+  }
+  .list-view .card-left { flex-shrink: 0; width: 32px; }
+  .list-view .card-main { flex: 1; min-width: 0; }
+  .list-view .card-top { margin-bottom: 6px; }
+  .list-view .card-desc { margin-bottom: 10px; }
+  .list-view .bp-card:hover { transform: translateX(3px) translateY(0); }
+
+  /* ── CATEGORY COLOR SCHEME ──────────────────────────────────── */
+  .cat-prompting   { background: rgba(98,213,182,0.12); color: #62D5B6; }
+  .cat-context     { background: rgba(98,160,213,0.12); color: #62A8D5; }
+  .cat-testing     { background: rgba(140,213,98,0.12); color: #8DD562; }
+  .cat-architecture{ background: rgba(213,160,98,0.12); color: #D5A062; }
+  .cat-workflow    { background: rgba(160,98,213,0.12); color: #A062D5; }
+  .cat-collaboration{ background: rgba(213,98,160,0.12); color: #D562A0; }
+  .cat-models      { background: rgba(98,213,213,0.12); color: #62D5D5; }
+  .cat-mindset     { background: rgba(213,213,98,0.12);  color: #C8C84A; }
+
+  .icon-prompting    { background: rgba(98,213,182,0.15); }
+  .icon-context      { background: rgba(98,160,213,0.15); }
+  .icon-testing      { background: rgba(140,213,98,0.15); }
+  .icon-architecture { background: rgba(213,160,98,0.15); }
+  .icon-workflow     { background: rgba(160,98,213,0.15); }
+  .icon-collaboration{ background: rgba(213,98,160,0.15); }
+  .icon-models       { background: rgba(98,213,213,0.15); }
+  .icon-mindset      { background: rgba(213,213,98,0.15); }
+
+  /* ── EMPTY STATE ────────────────────────────────────────────── */
+  .empty-state {
+    text-align: center; padding: 80px 20px;
+    color: var(--text-muted);
+  }
+  .empty-state-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
+  .empty-state h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 400;
+    color: var(--ash-light); margin-bottom: 8px;
+  }
+  .empty-state p { font-size: 14px; }
+
+  /* ── MODAL ──────────────────────────────────────────────────── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--dark);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    width: 100%; max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(20px);
+    transition: transform 0.25s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .modal-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 500; color: var(--white);
+  }
+  .modal-header p { font-size: 13px; color: var(--ash); margin-top: 4px; }
+  .modal-close {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    color: var(--ash); font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .modal-close:hover { background: var(--border); color: var(--text-primary); }
+  .modal-body { padding: 24px 28px; }
+  .form-group { margin-bottom: 18px; }
+  .form-label {
+    display: block; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--ash); margin-bottom: 8px;
+  }
+  .form-label span { color: var(--gold); margin-left: 2px; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 14px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none; border-color: var(--gold-dim);
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+  .form-select option { background: var(--dark); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-hint { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+  .modal-footer {
+    padding: 20px 28px;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 12px; justify-content: flex-end;
+  }
+  .btn-cancel {
+    padding: 10px 20px; border-radius: 8px;
+    font-size: 14px; font-weight: 500;
+    color: var(--ash); border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .btn-cancel:hover { border-color: var(--border-light); color: var(--text-primary); }
+  .btn-submit {
+    padding: 10px 24px; border-radius: 8px;
+    font-size: 14px; font-weight: 600;
+    background: var(--gold); color: var(--black);
+    transition: all 0.2s;
+  }
+  .btn-submit:hover { background: var(--gold-light); }
+
+  /* ── DETAIL MODAL ───────────────────────────────────────────── */
+  .detail-modal { max-width: 620px; }
+  .detail-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 500; color: var(--white);
+    line-height: 1.2; margin-bottom: 16px;
+  }
+  .detail-desc {
+    font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .detail-section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--ash);
+    margin-bottom: 10px;
+  }
+  .detail-meta-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-bottom: 20px;
+  }
+  .detail-meta-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .detail-meta-key { font-size: 11px; color: var(--ash); margin-bottom: 3px; }
+  .detail-meta-val { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+
+  /* ── TOAST ──────────────────────────────────────────────────── */
+  .toast-container {
+    position: fixed; bottom: 24px; right: 24px;
+    z-index: 300; display: flex; flex-direction: column; gap: 10px;
+    pointer-events: none;
+  }
+  .toast {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px; color: var(--text-primary);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    display: flex; align-items: center; gap: 10px;
+    animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.5s forwards;
+    max-width: 280px;
+  }
+  .toast.success { border-color: var(--success); }
+  .toast.gold    { border-color: var(--gold); }
+  @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; transform: translateX(8px); } }
+
+  /* ── FOOTER ─────────────────────────────────────────────────── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 32px;
+    text-align: center;
+    color: var(--text-muted); font-size: 12px;
+    background: var(--dark);
+  }
+  .footer a { color: var(--gold-dim); }
+  .footer strong { color: var(--ash); }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .header { padding: 0 16px; }
+    .hero, .controls, .main { padding-left: 16px; padding-right: 16px; }
+    .active-filters { padding-left: 16px; padding-right: 16px; }
+    .hero-heading { font-size: 30px; }
+    .stats-row { gap: 12px; }
+    .stat-card { padding: 14px 18px; }
+    .stat-value { font-size: 28px; }
+    .controls-inner { gap: 8px; }
+    .search-wrap { min-width: 100%; max-width: 100%; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .logo-tt { display: none; }
+    .modal { border-radius: 12px 12px 0 0; }
+    .modal-overlay { align-items: flex-end; padding: 0; }
+    .detail-meta-grid { grid-template-columns: 1fr; }
+    .filter-select { min-width: 120px; }
+  }
+
+  /* ── LOADING STATE ──────────────────────────────────────────── */
+  .skeleton {
+    background: linear-gradient(90deg, var(--card-bg) 25%, var(--card-hover) 50%, var(--card-bg) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+  }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* ── CARD EXPAND ────────────────────────────────────────────── */
+  .bp-card { cursor: pointer; }
+  .card-id {
+    position: absolute; top: 14px; right: 52px;
+    font-size: 10px; color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── MODAL TABS ─────────────────────────────────────────────── */
+  .modal-tabs {
+    display: flex; gap: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 0 28px;
+    background: var(--dark);
+  }
+  .modal-tab {
+    padding: 14px 20px 13px;
+    font-size: 13px; font-weight: 500;
+    color: var(--ash); border: none;
+    background: none; cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+    display: flex; align-items: center; gap: 7px;
+    white-space: nowrap;
+  }
+  .modal-tab:hover { color: var(--text-primary); }
+  .modal-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── UPLOAD AREA ─────────────────────────────────────────────── */
+  .upload-area {
+    border: 2px dashed var(--border-light);
+    border-radius: 12px;
+    padding: 36px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .upload-area:hover, .upload-area.drag-over {
+    border-color: var(--gold);
+    background: var(--gold-glow);
+  }
+  .upload-area input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%;
+  }
+  .upload-icon { font-size: 32px; margin-bottom: 10px; opacity: 0.7; }
+  .upload-title { font-size: 15px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+  .upload-sub { font-size: 12px; color: var(--text-muted); }
+  .upload-file-name {
+    margin-top: 14px; font-size: 13px; color: var(--gold);
+    background: var(--gold-glow); border: 1px solid var(--gold-dim);
+    padding: 6px 14px; border-radius: 6px; display: none;
+    align-items: center; gap: 8px;
+  }
+  .upload-file-name.visible { display: inline-flex; }
+
+  /* ── EXTRACT STAGES ──────────────────────────────────────────── */
+  .extract-stage { display: none; }
+  .extract-stage.active { display: block; }
+  .stage-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  }
+  .stage-num {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--gold); color: var(--black);
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .stage-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  .stage-sub { font-size: 12px; color: var(--ash); margin-top: 1px; }
+  .prompt-box {
+    background: var(--black);
+    border: 1px solid var(--border-light);
+    border-radius: 8px; padding: 14px;
+    font-size: 12px; color: var(--ash-light);
+    font-family: monospace; line-height: 1.6;
+    max-height: 180px; overflow-y: auto;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .stage-actions {
+    display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;
+  }
+  .btn-copy {
+    background: var(--gold); color: var(--black);
+    font-size: 13px; font-weight: 600;
+    padding: 9px 18px; border-radius: 7px;
+    transition: background 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .btn-copy:hover { background: var(--gold-light); }
+  .btn-open-claude {
+    background: var(--card-bg); color: var(--ash-light);
+    border: 1px solid var(--border-light);
+    font-size: 13px; font-weight: 500;
+    padding: 9px 18px; border-radius: 7px;
+    transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+  }
+  .btn-open-claude:hover { border-color: var(--gold-dim); color: var(--text-primary); }
+  .paste-area {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+    color: var(--text-primary); font-size: 13px;
+    font-family: monospace; resize: vertical; min-height: 110px;
+    transition: border-color 0.2s;
+  }
+  .paste-area:focus { outline: none; border-color: var(--gold-dim); }
+  .paste-area::placeholder { color: var(--text-muted); font-family: 'DM Sans', sans-serif; }
+  .btn-parse {
+    background: var(--gold); color: var(--black);
+    font-size: 13px; font-weight: 600;
+    padding: 10px 22px; border-radius: 7px;
+    transition: background 0.2s; display: flex; align-items: center; gap: 6px;
+  }
+  .btn-parse:hover { background: var(--gold-light); }
+  .parse-status {
+    font-size: 12px; padding: 8px 12px; border-radius: 6px; margin-top: 8px;
+    display: none;
+  }
+  .parse-status.ok  { display: block; background: rgba(98,213,182,0.1); color: var(--gold); border: 1px solid var(--gold-dim); }
+  .parse-status.err { display: block; background: rgba(220,80,80,0.1); color: #E08080; border: 1px solid rgba(220,80,80,0.3); }
+
+  /* ── PREVIEW CARDS ───────────────────────────────────────────── */
+  .preview-list { display: flex; flex-direction: column; gap: 10px; max-height: 360px; overflow-y: auto; }
+  .preview-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+    display: flex; gap: 12px; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .preview-card.selected { border-color: var(--gold-dim); }
+  .preview-check { flex-shrink: 0; margin-top: 2px; }
+  .preview-check input { width: 16px; height: 16px; cursor: pointer; accent-color: var(--gold); }
+  .preview-content { flex: 1; min-width: 0; }
+  .preview-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; line-height: 1.3; }
+  .preview-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 8px; }
+  .preview-footer { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .preview-select {
+    background: var(--black); border: 1px solid var(--border);
+    border-radius: 5px; padding: 3px 8px;
+    font-size: 11px; color: var(--ash-light); cursor: pointer;
+  }
+  .preview-select:focus { outline: none; border-color: var(--gold-dim); }
+  .preview-count {
+    font-size: 13px; color: var(--ash); margin-bottom: 12px;
+  }
+  .preview-count strong { color: var(--gold); }
+  .btn-add-selected {
+    background: var(--gold); color: var(--black);
+    font-size: 13px; font-weight: 700;
+    padding: 11px 24px; border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .btn-add-selected:hover { background: var(--gold-light); }
+  .btn-add-selected:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── STEP PROGRESS ───────────────────────────────────────────── */
+  .step-progress {
+    display: flex; align-items: center; gap: 0; margin-bottom: 20px;
+  }
+  .step-dot {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--border); color: var(--ash);
+    font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.3s; position: relative; z-index: 1;
+  }
+  .step-dot.done { background: var(--gold); color: var(--black); }
+  .step-dot.active { background: var(--gold); color: var(--black); box-shadow: 0 0 0 4px var(--gold-glow); }
+  .step-line { flex: 1; height: 2px; background: var(--border); transition: background 0.3s; }
+  .step-line.done { background: var(--gold); }
+  .step-labels { display: flex; justify-content: space-between; margin-top: 6px; margin-bottom: 20px; }
+  .step-label { font-size: 10px; color: var(--text-muted); text-align: center; width: 28px; }
+  .step-label.active { color: var(--gold); }
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js">
+/* ════════════════════════════════════════════════════════════════
+   ADD MODAL — TAB SWITCHING
+   ════════════════════════════════════════════════════════════════ */
+function switchAddTab(tab) {
+  document.getElementById('tabInsight').classList.toggle('active', tab === 'insight');
+  document.getElementById('tabExtract').classList.toggle('active', tab === 'extract');
+  document.getElementById('panelInsight').classList.toggle('active', tab === 'insight');
+  document.getElementById('panelExtract').classList.toggle('active', tab === 'extract');
+  if (tab === 'extract') resetExtractFlow();
+}
+
+/* ════════════════════════════════════════════════════════════════
+   EXTRACT FROM TRANSCRIPT WORKFLOW
+   ════════════════════════════════════════════════════════════════ */
+let extractState = {
+  rawText: '',
+  fullPrompt: '',
+  parsedItems: []
+};
+
+function resetExtractFlow() {
+  extractState = { rawText: '', fullPrompt: '', parsedItems: [] };
+  goToXStage(1);
+  document.getElementById('transcriptFile').value = '';
+  document.getElementById('uploadFileName').classList.remove('visible');
+  document.getElementById('btnReadFile').disabled = true;
+  document.getElementById('jsonPasteArea').value = '';
+  document.getElementById('parseStatus').className = 'parse-status';
+  document.getElementById('previewList').innerHTML = '';
+}
+
+function goToXStage(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('xStage'+i).classList.toggle('active', i === n);
+    const dot = document.getElementById('sdot'+i);
+    dot.classList.toggle('active', i === n);
+    dot.classList.toggle('done', i < n);
+    document.getElementById('slabel'+i).classList.toggle('active', i === n);
+  });
+  [1,2].forEach(i => {
+    document.getElementById('sline'+i).classList.toggle('done', i < n);
+  });
+}
+
+function handleFileSelect(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  document.getElementById('uploadFileLabel').textContent = file.name;
+  document.getElementById('uploadFileName').classList.add('visible');
+  document.getElementById('btnReadFile').disabled = false;
+}
+
+// Drag & drop support
+document.addEventListener('DOMContentLoaded', function() {
+  const area = document.getElementById('uploadArea');
+  if (!area) return;
+  area.addEventListener('dragover', e => { e.preventDefault(); area.classList.add('drag-over'); });
+  area.addEventListener('dragleave', () => area.classList.remove('drag-over'));
+  area.addEventListener('drop', e => {
+    e.preventDefault(); area.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      document.getElementById('transcriptFile').files = e.dataTransfer.files;
+      document.getElementById('uploadFileLabel').textContent = file.name;
+      document.getElementById('uploadFileName').classList.add('visible');
+      document.getElementById('btnReadFile').disabled = false;
+    }
+  });
+});
+
+async function readAndGeneratePrompt() {
+  const fileInput = document.getElementById('transcriptFile');
+  const file = fileInput.files[0];
+  if (!file) { toast('Please select a file first', ''); return; }
+
+  const btn = document.getElementById('btnReadFile');
+  btn.textContent = 'Reading…'; btn.disabled = true;
+
+  try {
+    let text = '';
+    if (file.name.endsWith('.docx')) {
+      const buf = await file.arrayBuffer();
+      const result = await mammoth.extractRawText({ arrayBuffer: buf });
+      text = result.value;
+    } else {
+      text = await file.text();
+    }
+
+    if (!text || text.trim().length < 50) {
+      toast('File appears empty or too short', ''); btn.textContent = 'Continue →'; btn.disabled = false; return;
+    }
+
+    extractState.rawText = text.trim();
+    extractState.fullPrompt = buildExtractionPrompt(text.trim());
+
+    // Show truncated preview (first 600 chars)
+    const preview = extractState.fullPrompt.length > 800
+      ? extractState.fullPrompt.slice(0, 800) + '\n\n… [full prompt with transcript copied to clipboard]'
+      : extractState.fullPrompt;
+    document.getElementById('promptPreview').textContent = preview;
+
+    goToXStage(2);
+  } catch(err) {
+    toast('Could not read file: ' + err.message, '');
+  }
+  btn.textContent = 'Continue →'; btn.disabled = false;
+}
+
+function buildExtractionPrompt(transcript) {
+  return `You are a knowledge extractor for Transform Together (TT), a UK boutique management consultancy running an internal AI upskilling programme called TTMATION.
+
+Analyse the meeting transcript below and extract EVERY best practice, tip, tool recommendation, lesson learned, and actionable insight mentioned by any speaker.
+
+For each item, return a JSON object with EXACTLY these fields:
+{
+  "title": "Concise actionable title, max 10 words",
+  "desc": "Full 2-4 sentence explanation — what the practice is, why it matters, when to use it.",
+  "category": "ONE of: prompting | context | testing | architecture | workflow | collaboration | models | mindset",
+  "contributor": "Speaker name if clearly identifiable, else Team Discussion",
+  "tags": ["3-5", "lowercase", "keywords"],
+  "source": "e.g. Session 3 Demo, or Team Q&A"
+}
+
+Categories:
+- prompting: Writing effective AI prompts
+- context: Setting up AI tools, skills, projects, memory
+- testing: QA, regression testing, bug fixing
+- architecture: Data organisation, hosting, tech decisions
+- workflow: Process, discovery, iteration
+- collaboration: Knowledge sharing, team dynamics
+- models: Which AI model to use and when
+- mindset: AI adoption philosophy, mental models
+
+Return ONLY a valid JSON array. No markdown code fences, no preamble, no trailing text. Start with [ and end with ].
+
+TRANSCRIPT:
+${transcript}`;
+}
+
+function copyPromptToClipboard() {
+  if (!extractState.fullPrompt) { toast('No prompt generated yet', ''); return; }
+  navigator.clipboard.writeText(extractState.fullPrompt).then(() => {
+    const btn = document.getElementById('copyBtnLabel');
+    btn.textContent = 'Copied! ✓';
+    setTimeout(() => { btn.textContent = 'Copy Full Prompt'; }, 2500);
+    toast('Full prompt copied to clipboard', 'gold');
+  }).catch(() => {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = extractState.fullPrompt;
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    toast('Prompt copied to clipboard', 'gold');
+  });
+}
+
+function parseJsonResponse() {
+  const raw = document.getElementById('jsonPasteArea').value.trim();
+  const status = document.getElementById('parseStatus');
+  if (!raw) { status.className = 'parse-status err'; status.textContent = 'Please paste Claude\'s JSON response first.'; return; }
+
+  // Strip markdown code fences if present
+  let cleaned = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '').trim();
+
+  try {
+    const items = JSON.parse(cleaned);
+    if (!Array.isArray(items) || items.length === 0) throw new Error('Expected a non-empty JSON array');
+
+    const valid = items.filter(it => it.title && it.desc);
+    if (valid.length === 0) throw new Error('No valid items found — each needs at least title and desc');
+
+    extractState.parsedItems = valid;
+    status.className = 'parse-status ok';
+    status.textContent = '✓ Found ' + valid.length + ' best practice' + (valid.length === 1 ? '' : 's') + '. Review and add below.';
+
+    renderPreviewCards(valid);
+    setTimeout(() => goToXStage(3), 400);
+  } catch(err) {
+    status.className = 'parse-status err';
+    status.textContent = '✗ Could not parse JSON: ' + err.message + '. Make sure you paste the full [ … ] array from Claude.';
+  }
+}
+
+const VALID_CATS = ['prompting','context','testing','architecture','workflow','collaboration','models','mindset'];
+
+function renderPreviewCards(items) {
+  const list = document.getElementById('previewList');
+  list.innerHTML = items.map((item, i) => {
+    const cat = VALID_CATS.includes(item.category) ? item.category : 'prompting';
+    const tagsStr = Array.isArray(item.tags) ? item.tags.join(', ') : (item.tags||'');
+    return `
+    <div class="preview-card selected" id="previewCard${i}">
+      <div class="preview-check">
+        <input type="checkbox" id="previewCheck${i}" checked onchange="updatePreviewSelection()">
+      </div>
+      <div class="preview-content">
+        <div class="preview-title">${esc(item.title||'Untitled')}</div>
+        <div class="preview-desc">${esc((item.desc||'').slice(0,180))}${(item.desc||'').length>180?'…':''}</div>
+        <div class="preview-footer">
+          <select class="preview-select" id="previewCat${i}" onchange="updatePreviewCard(${i})">
+            ${VALID_CATS.map(c => `<option value="${c}" ${c===cat?'selected':''}>${CATEGORIES[c].label}</option>`).join('')}
+          </select>
+          <span class="meta-pill" style="font-size:10px">${esc(item.contributor||'Team')}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  updatePreviewSelection();
+}
+
+function updatePreviewCard(i) {
+  const card = document.getElementById('previewCard'+i);
+  const checked = document.getElementById('previewCheck'+i).checked;
+  card.classList.toggle('selected', checked);
+}
+
+function updatePreviewSelection() {
+  const total = extractState.parsedItems.length;
+  let selected = 0;
+  extractState.parsedItems.forEach((_, i) => {
+    const chk = document.getElementById('previewCheck'+i);
+    const card = document.getElementById('previewCard'+i);
+    if (chk && chk.checked) { selected++; card.classList.add('selected'); }
+    else if (card) { card.classList.remove('selected'); }
+  });
+  document.getElementById('previewCount').innerHTML =
+    '<strong>' + selected + '</strong> of ' + total + ' selected to add';
+  const btn = document.getElementById('btnAddSelected');
+  btn.disabled = selected === 0;
+  btn.textContent = selected > 0
+    ? 'Add ' + selected + ' to Knowledge Base'
+    : 'Add Selected to Knowledge Base';
+}
+
+function addSelectedExtracted() {
+  const items = extractState.parsedItems;
+  let added = 0;
+  const maxId = Math.max(...BEST_PRACTICES.map(b => b.id), 0);
+
+  items.forEach((item, i) => {
+    const chk = document.getElementById('previewCheck'+i);
+    if (!chk || !chk.checked) return;
+    const cat = document.getElementById('previewCat'+i)?.value || item.category || 'mindset';
+    const validCat = VALID_CATS.includes(cat) ? cat : 'mindset';
+
+    BEST_PRACTICES.push({
+      id: maxId + added + 1,
+      category: validCat,
+      session: 0,
+      contributor: item.contributor || 'Team Contribution',
+      title: item.title || 'Untitled',
+      desc: item.desc || '',
+      tags: Array.isArray(item.tags) ? item.tags : (item.tags||'').split(',').map(t=>t.trim()).filter(Boolean),
+      source: item.source || 'Extracted from transcript',
+      userAdded: true
+    });
+    added++;
+  });
+
+  if (added === 0) { toast('No items selected', ''); return; }
+
+  saveUserBPs();
+  closeModal('addModal');
+  resetExtractFlow();
+  render();
+  toast('Added ' + added + ' best practice' + (added===1?'':'s') + ' to the knowledge base ✓', 'success');
+}
+
+</script>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────────────────── -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-tt">
+        <img src="assets/logo.png" alt="Transform Together" class="logo-img">
+      </div>
+      <div class="ttmation-badge">
+        <div class="ttmation-label">TTMATION</div>
+        <div class="ttmation-title">Knowledge System</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-bookmarks" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+        Bookmarks
+        <span class="bookmark-count" id="bookmarkCount">0</span>
+      </button>
+      <button class="btn-add" id="btnAddBestPractice" onclick="openAddModal()" disabled title="Temporarily disabled by the TTMATION admin" style="opacity:0.4;cursor:not-allowed">+ Add Best Practice</button>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO / STATS ────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div>
+        <h1 class="hero-heading">AI Best Practices<br><span>Knowledge Base</span></h1>
+        <p class="hero-desc">Curated insights from TTMATION training sessions — distilled from demos, Q&As and team discussions. Search, filter and bookmark what matters to you.</p>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value" id="statTotal">0</div>
+        <div class="stat-label">Best Practices</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">4</div>
+        <div class="stat-label">Sessions Covered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">8</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statBookmarks">0</div>
+        <div class="stat-label">Bookmarked</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTROLS ────────────────────────────────────────────────── -->
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <span class="search-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
+      <input class="search-input" id="searchInput" type="text" placeholder="Search best practices…" oninput="applyFilters()">
+    </div>
+    <select class="filter-select" id="filterCategory" onchange="applyFilters()">
+      <option value="">All Categories</option>
+      <option value="prompting">Prompting & Prompt Engineering</option>
+      <option value="context">Context & Setup</option>
+      <option value="testing">Testing & QA</option>
+      <option value="architecture">Data & Architecture</option>
+      <option value="workflow">Workflow & Process</option>
+      <option value="collaboration">Collaboration</option>
+      <option value="models">Model Selection</option>
+      <option value="mindset">AI Mindset & Adoption</option>
+    </select>
+    <select class="filter-select" id="filterSession" onchange="applyFilters()">
+      <option value="">All Sessions</option>
+      <option value="1">Session 1 – Raheem</option>
+      <option value="2">Session 2 – Fara</option>
+      <option value="3">Session 3 – Kiran</option>
+      <option value="4">Session 4 – Megan</option>
+    </select>
+    <div class="controls-right">
+      <span class="results-count" id="resultsCount"></span>
+      <select class="sort-select" id="sortSelect" onchange="applyFilters()">
+        <option value="default">Default order</option>
+        <option value="rating">Highest rated</option>
+        <option value="az">A → Z</option>
+      </select>
+      <div class="view-toggle">
+        <button class="view-btn active" id="viewGrid" onclick="setView('grid')" title="Grid view">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </button>
+        <button class="view-btn" id="viewList" onclick="setView('list')" title="List view">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ACTIVE FILTERS ──────────────────────────────────────────── -->
+<div class="active-filters" id="activeFilters"></div>
+
+<!-- ── MAIN ───────────────────────────────────────────────────── -->
+<main class="main" id="mainContent"></main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer class="footer">
+  <p><strong>TTMATION Knowledge System</strong> · Transform Together Internal Use Only · Updated May 2026</p>
+  <p style="margin-top:6px">Best practices sourced from live training sessions. Always review AI-generated output before use.</p>
+</footer>
+
+<!-- ── TOAST CONTAINER ────────────────────────────────────────── -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ── ADD BEST PRACTICE MODAL ────────────────────────────────── -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal" style="max-width:620px">
+    <div class="modal-header">
+      <div>
+        <h2>Add Best Practice</h2>
+        <p>Add a single insight or extract from a meeting transcript</p>
+      </div>
+      <button class="modal-close" onclick="closeModal('addModal')">✕</button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="modal-tabs">
+      <button class="modal-tab active" id="tabInsight" onclick="switchAddTab('insight')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add Single Insight
+      </button>
+      <button class="modal-tab" id="tabExtract" onclick="switchAddTab('extract')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Extract from Transcript
+      </button>
+    </div>
+
+    <!-- ── TAB 1: Add Single Insight ── -->
+    <div class="tab-panel active" id="panelInsight">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Title <span>*</span></label>
+          <input class="form-input" id="newTitle" type="text" placeholder="e.g. Use a separate thread for each module">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description <span>*</span></label>
+          <textarea class="form-textarea" id="newDesc" placeholder="Explain the best practice in full — what it is, why it matters, and when to use it."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category <span>*</span></label>
+          <select class="form-select" id="newCategory">
+            <option value="">Select a category…</option>
+            <option value="prompting">Prompting &amp; Prompt Engineering</option>
+            <option value="context">Context &amp; Setup</option>
+            <option value="testing">Testing &amp; QA</option>
+            <option value="architecture">Data &amp; Architecture</option>
+            <option value="workflow">Workflow &amp; Process</option>
+            <option value="collaboration">Collaboration</option>
+            <option value="models">Model Selection</option>
+            <option value="mindset">AI Mindset &amp; Adoption</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" id="newContributor" type="text" placeholder="e.g. Raheem Jivraj">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Session / Source</label>
+          <input class="form-input" id="newSource" type="text" placeholder="e.g. Session 3, or Personal experience">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tags</label>
+          <input class="form-input" id="newTags" type="text" placeholder="e.g. prompts, tokens, Claude Code  (comma-separated)">
+          <div class="form-hint">Add relevant tags to make this easier to find</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeModal('addModal')">Cancel</button>
+        <button class="btn-submit" onclick="submitBestPractice()">Submit Best Practice</button>
+      </div>
+    </div>
+
+    <!-- ── TAB 2: Extract from Transcript ── -->
+    <div class="tab-panel" id="panelExtract">
+      <div class="modal-body">
+
+        <!-- Step progress -->
+        <div class="step-progress">
+          <div class="step-dot active" id="sdot1">1</div>
+          <div class="step-line" id="sline1"></div>
+          <div class="step-dot" id="sdot2">2</div>
+          <div class="step-line" id="sline2"></div>
+          <div class="step-dot" id="sdot3">3</div>
+        </div>
+        <div class="step-labels">
+          <span class="step-label active" id="slabel1">Upload</span>
+          <span class="step-label" id="slabel2">Extract</span>
+          <span class="step-label" id="slabel3">Review</span>
+        </div>
+
+        <!-- Stage 1: Upload -->
+        <div class="extract-stage active" id="xStage1">
+          <div class="stage-header">
+            <div>
+              <div class="stage-title">Upload your transcript or document</div>
+              <div class="stage-sub">Supports .txt and .docx files — e.g. meeting recordings exported from Teams</div>
+            </div>
+          </div>
+          <div class="upload-area" id="uploadArea">
+            <input type="file" id="transcriptFile" accept=".txt,.docx" onchange="handleFileSelect(event)">
+            <div class="upload-icon">📄</div>
+            <div class="upload-title">Drag &amp; drop your file here, or click to browse</div>
+            <div class="upload-sub">.txt or .docx · Max 2MB</div>
+          </div>
+          <div style="margin-top:12px;text-align:center">
+            <span class="upload-file-name" id="uploadFileName">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span id="uploadFileLabel">file.txt</span>
+            </span>
+          </div>
+          <div class="modal-footer" style="margin:24px -28px -24px; padding: 16px 28px">
+            <button class="btn-cancel" onclick="closeModal('addModal')">Cancel</button>
+            <button class="btn-parse" id="btnReadFile" onclick="readAndGeneratePrompt()" disabled>
+              Continue →
+            </button>
+          </div>
+        </div>
+
+        <!-- Stage 2: Copy prompt to Claude -->
+        <div class="extract-stage" id="xStage2">
+          <div class="stage-header">
+            <div>
+              <div class="stage-title">Copy this prompt into Claude.ai</div>
+              <div class="stage-sub">The full prompt with your transcript is ready. Paste it into Claude and copy the JSON response.</div>
+            </div>
+          </div>
+          <div class="prompt-box" id="promptPreview">Generating prompt…</div>
+          <div class="stage-actions">
+            <button class="btn-copy" onclick="copyPromptToClipboard()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span id="copyBtnLabel">Copy Full Prompt</span>
+            </button>
+            <a href="https://claude.ai" target="_blank" class="btn-open-claude">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Claude.ai
+            </a>
+          </div>
+
+          <div style="margin-top:22px">
+            <label class="form-label">Paste Claude's JSON response here <span>*</span></label>
+            <textarea class="paste-area" id="jsonPasteArea" placeholder='Paste the JSON array Claude returns here — it should start with [ and end with ]'></textarea>
+            <div class="parse-status" id="parseStatus"></div>
+          </div>
+
+          <div class="modal-footer" style="margin:20px -28px -24px; padding: 16px 28px">
+            <button class="btn-cancel" onclick="goToXStage(1)">← Back</button>
+            <button class="btn-parse" onclick="parseJsonResponse()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Parse &amp; Preview
+            </button>
+          </div>
+        </div>
+
+        <!-- Stage 3: Review & Add -->
+        <div class="extract-stage" id="xStage3">
+          <div class="stage-header">
+            <div>
+              <div class="stage-title">Review extracted best practices</div>
+              <div class="stage-sub">Select which to add to the knowledge base. You can change the category of each.</div>
+            </div>
+          </div>
+          <p class="preview-count" id="previewCount"></p>
+          <div class="preview-list" id="previewList"></div>
+          <div class="modal-footer" style="margin:20px -28px -24px; padding: 16px 28px">
+            <button class="btn-cancel" onclick="goToXStage(2)">← Back</button>
+            <button class="btn-add-selected" id="btnAddSelected" onclick="addSelectedExtracted()">
+              Add Selected to Knowledge Base
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end panelExtract -->
+
+  </div><!-- end modal -->
+</div>
+
+<!-- ── DETAIL MODAL ────────────────────────────────────────────── -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal detail-modal">
+    <div class="modal-header">
+      <div>
+        <div id="detailBadge" class="cat-badge" style="display:inline-flex;margin-bottom:8px"></div>
+        <h2 id="detailTitle" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;color:var(--white)"></h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('detailModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p id="detailDesc" style="font-size:15px;color:var(--text-secondary);line-height:1.75;margin-bottom:24px"></p>
+      <div class="detail-section-label">Details</div>
+      <div class="detail-meta-grid" id="detailMeta"></div>
+      <div class="detail-section-label" style="margin-top:16px">Tags</div>
+      <div class="card-tags" id="detailTags" style="margin-top:8px"></div>
+      <div style="margin-top:24px;display:flex;align-items:center;gap:12px">
+        <div class="detail-section-label" style="margin:0">Your rating:</div>
+        <div class="rating-area" id="detailRating"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="detailBookmarkBtn" onclick="toggleBookmarkFromDetail()">☆ Bookmark</button>
+      <button class="btn-submit" onclick="closeModal('detailModal')">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   BEST PRACTICES DATA
+   ════════════════════════════════════════════════════════════════ */
+let BEST_PRACTICES = [];
+
+async function loadBestPracticesData() {
+  try {
+    const res = await fetch('data/best-practices.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    BEST_PRACTICES = await res.json();
+  } catch (err) {
+    console.error('Failed to load best-practices.json:', err);
+    document.getElementById('mainContent').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">⚠️</div>
+        <h3>Couldn't load best practices data</h3>
+        <p>Make sure data/best-practices.json is present alongside index.html, and that you're viewing this via a web server (not opening the file directly).</p>
+      </div>`;
+    throw err;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CONFIG
+   ════════════════════════════════════════════════════════════════ */
+const CATEGORIES = {
+  prompting:     { label: 'Prompting & Prompt Engineering', icon: '✍️' },
+  context:       { label: 'Context & Setup',                icon: '⚙️' },
+  testing:       { label: 'Testing & QA',                   icon: '🧪' },
+  architecture:  { label: 'Data & Architecture',            icon: '🏗️' },
+  workflow:      { label: 'Workflow & Process',              icon: '🔄' },
+  collaboration: { label: 'Collaboration',                  icon: '🤝' },
+  models:        { label: 'Model Selection',                icon: '🧠' },
+  mindset:       { label: 'AI Mindset & Adoption',          icon: '💡' }
+};
+
+/* ════════════════════════════════════════════════════════════════
+   STATE
+   ════════════════════════════════════════════════════════════════ */
+let state = {
+  search: '',
+  category: '',
+  session: '',
+  sort: 'default',
+  view: 'grid',
+  showBookmarksOnly: false,
+  ratings: {},
+  bookmarks: new Set(),
+  detailId: null
+};
+
+/* ════════════════════════════════════════════════════════════════
+   PERSISTENCE
+   ════════════════════════════════════════════════════════════════ */
+function loadStorage() {
+  try {
+    const r = localStorage.getItem('ttmation_ratings');
+    const b = localStorage.getItem('ttmation_bookmarks');
+    const u = localStorage.getItem('ttmation_userbps');
+    if (r) state.ratings = JSON.parse(r);
+    if (b) state.bookmarks = new Set(JSON.parse(b));
+    if (u) {
+      const extras = JSON.parse(u);
+      extras.forEach(bp => BEST_PRACTICES.push(bp));
+    }
+  } catch(e) {}
+}
+function saveRatings()   { try { localStorage.setItem('ttmation_ratings',   JSON.stringify(state.ratings)); } catch(e) {} }
+function saveBookmarks() { try { localStorage.setItem('ttmation_bookmarks', JSON.stringify([...state.bookmarks])); } catch(e) {} }
+function saveUserBPs()   {
+  try {
+    const userBPs = BEST_PRACTICES.filter(bp => bp.userAdded);
+    localStorage.setItem('ttmation_userbps', JSON.stringify(userBPs));
+  } catch(e) {}
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FILTER & RENDER
+   ════════════════════════════════════════════════════════════════ */
+function getFiltered() {
+  let items = [...BEST_PRACTICES];
+  const q = state.search.toLowerCase().trim();
+
+  if (q) {
+    items = items.filter(bp =>
+      bp.title.toLowerCase().includes(q) ||
+      bp.desc.toLowerCase().includes(q) ||
+      bp.tags.some(t => t.toLowerCase().includes(q)) ||
+      (bp.contributor||'').toLowerCase().includes(q) ||
+      CATEGORIES[bp.category].label.toLowerCase().includes(q)
+    );
+  }
+  if (state.category) items = items.filter(bp => bp.category === state.category);
+  if (state.session)  items = items.filter(bp => String(bp.session) === state.session);
+  if (state.showBookmarksOnly) items = items.filter(bp => state.bookmarks.has(bp.id));
+
+  if (state.sort === 'rating') {
+    items.sort((a,b) => (state.ratings[b.id]||0) - (state.ratings[a.id]||0));
+  } else if (state.sort === 'az') {
+    items.sort((a,b) => a.title.localeCompare(b.title));
+  }
+  return items;
+}
+
+function render() {
+  const filtered = getFiltered();
+  const main = document.getElementById('mainContent');
+  document.getElementById('statTotal').textContent = BEST_PRACTICES.length;
+  document.getElementById('statBookmarks').textContent = state.bookmarks.size;
+  updateBookmarkCount();
+  renderActiveFilters();
+  updateResultsCount(filtered.length);
+
+  if (filtered.length === 0) {
+    main.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">🔍</div>
+        <h3>No best practices found</h3>
+        <p>Try adjusting your search or filters — or <button onclick="clearFilters()" style="color:var(--gold);text-decoration:underline;background:none;border:none;cursor:pointer;font-size:14px">clear all filters</button></p>
+      </div>`;
+    return;
+  }
+
+  // Group by category (only categories present in filtered results)
+  const grouped = {};
+  filtered.forEach(bp => {
+    if (!grouped[bp.category]) grouped[bp.category] = [];
+    grouped[bp.category].push(bp);
+  });
+
+  const catOrder = Object.keys(CATEGORIES);
+  const hasSearch = state.search || state.category || state.sort !== 'default';
+  let html = '';
+
+  if (!hasSearch && !state.showBookmarksOnly) {
+    // Group by category
+    catOrder.forEach(cat => {
+      if (!grouped[cat]) return;
+      const catInfo = CATEGORIES[cat];
+      html += `
+        <div class="category-section">
+          <div class="category-heading">
+            <div class="category-icon icon-${cat}" aria-hidden="true">${catInfo.icon}</div>
+            <span class="cat-label">${catInfo.label}</span>
+            <span class="cat-count">${grouped[cat].length}</span>
+          </div>
+          <div class="cards-grid ${state.view === 'list' ? 'list-grid' : ''}">
+            ${grouped[cat].map(bp => renderCard(bp)).join('')}
+          </div>
+        </div>`;
+    });
+  } else {
+    // Flat list
+    html = `<div class="cards-grid ${state.view === 'list' ? 'list-grid' : ''}">
+      ${filtered.map(bp => renderCard(bp)).join('')}
+    </div>`;
+  }
+
+  main.className = `main ${state.view === 'list' ? 'list-view' : ''}`;
+  main.innerHTML = html;
+}
+
+function renderCard(bp) {
+  const isBookmarked = state.bookmarks.has(bp.id);
+  const rating = state.ratings[bp.id] || 0;
+  const stars = [1,2,3,4,5].map(n =>
+    `<button class="star-btn ${n <= rating ? 'filled' : ''}" 
+      onclick="event.stopPropagation();rateCard(${bp.id},${n})" 
+      aria-label="Rate ${n} stars">★</button>`
+  ).join('');
+
+  const tags = (bp.tags||[]).map(t =>
+    `<span class="tag" onclick="event.stopPropagation();filterByTag('${t}')">${t}</span>`
+  ).join('');
+
+  return `
+  <div class="bp-card ${isBookmarked ? 'bookmarked' : ''}" onclick="openDetail(${bp.id})" data-id="${bp.id}">
+    <div class="card-top">
+      <span class="cat-badge cat-${bp.category}">${CATEGORIES[bp.category].label}</span>
+      <div class="card-actions">
+        <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" 
+          onclick="event.stopPropagation();toggleBookmark(${bp.id})" 
+          aria-label="${isBookmarked ? 'Remove bookmark' : 'Bookmark'}"
+          title="${isBookmarked ? 'Remove bookmark' : 'Bookmark this'}">
+          ${isBookmarked ? '★' : '☆'}
+        </button>
+      </div>
+    </div>
+    <div class="card-title">${esc(bp.title)}</div>
+    <div class="card-desc">${esc(bp.desc.length > 160 ? bp.desc.slice(0,157)+'…' : bp.desc)}</div>
+    <div class="card-tags">${tags}</div>
+    <div class="card-footer">
+      <div class="card-meta">
+        <span class="meta-pill">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Session ${bp.session}
+        </span>
+        ${bp.contributor ? `<span class="meta-pill">${esc(bp.contributor.split(' ')[0])}</span>` : ''}
+        ${bp.userAdded ? '<span class="meta-pill" style="color:var(--gold)">✦ Contributed</span>' : ''}
+      </div>
+      <div class="rating-area">${stars}</div>
+    </div>
+  </div>`;
+}
+
+function esc(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CONTROLS
+   ════════════════════════════════════════════════════════════════ */
+function applyFilters() {
+  state.search   = document.getElementById('searchInput').value;
+  state.category = document.getElementById('filterCategory').value;
+  state.session  = document.getElementById('filterSession').value;
+  state.sort     = document.getElementById('sortSelect').value;
+  render();
+}
+
+function setView(v) {
+  state.view = v;
+  document.getElementById('viewGrid').classList.toggle('active', v === 'grid');
+  document.getElementById('viewList').classList.toggle('active', v === 'list');
+  render();
+}
+
+function filterByTag(tag) {
+  state.search = tag;
+  document.getElementById('searchInput').value = tag;
+  render();
+}
+
+function clearFilters() {
+  state.search = ''; state.category = ''; state.session = '';
+  state.sort = 'default'; state.showBookmarksOnly = false;
+  document.getElementById('searchInput').value = '';
+  document.getElementById('filterCategory').value = '';
+  document.getElementById('filterSession').value = '';
+  document.getElementById('sortSelect').value = 'default';
+  document.getElementById('bookmarkFilterBtn').classList.remove('active');
+  render();
+}
+
+function updateResultsCount(n) {
+  const el = document.getElementById('resultsCount');
+  const total = BEST_PRACTICES.length;
+  el.textContent = n === total ? `${total} practices` : `${n} of ${total}`;
+}
+
+function renderActiveFilters() {
+  const el = document.getElementById('activeFilters');
+  const chips = [];
+  if (state.search)   chips.push({ label: `Search: "${state.search}"`, key: 'search' });
+  if (state.category) chips.push({ label: CATEGORIES[state.category].label, key: 'category' });
+  if (state.session)  chips.push({ label: `Session ${state.session}`, key: 'session' });
+  if (state.showBookmarksOnly) chips.push({ label: 'Bookmarked only', key: 'bookmarks' });
+
+  if (chips.length === 0) { el.innerHTML = ''; return; }
+  el.innerHTML = chips.map(c =>
+    `<span class="filter-chip">${esc(c.label)}
+      <button onclick="clearFilter('${c.key}')" aria-label="Remove filter">✕</button>
+    </span>`
+  ).join('') + `<button class="clear-all" onclick="clearFilters()">Clear all</button>`;
+}
+
+function clearFilter(key) {
+  if (key === 'search')    { state.search = ''; document.getElementById('searchInput').value = ''; }
+  if (key === 'category')  { state.category = ''; document.getElementById('filterCategory').value = ''; }
+  if (key === 'session')   { state.session = ''; document.getElementById('filterSession').value = ''; }
+  if (key === 'bookmarks') { state.showBookmarksOnly = false; document.getElementById('bookmarkFilterBtn').classList.remove('active'); }
+  render();
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BOOKMARKS & RATINGS
+   ════════════════════════════════════════════════════════════════ */
+function toggleBookmark(id) {
+  if (state.bookmarks.has(id)) {
+    state.bookmarks.delete(id);
+    toast('Bookmark removed', '');
+  } else {
+    state.bookmarks.add(id);
+    toast('Bookmarked! ★', 'gold');
+  }
+  saveBookmarks();
+  updateBookmarkCount();
+  render();
+}
+
+function toggleBookmarkFilter() {
+  state.showBookmarksOnly = !state.showBookmarksOnly;
+  document.getElementById('bookmarkFilterBtn').classList.toggle('active', state.showBookmarksOnly);
+  render();
+}
+
+function toggleBookmarkFromDetail() {
+  if (state.detailId == null) return;
+  toggleBookmark(state.detailId);
+  updateDetailBookmarkBtn();
+}
+
+function updateDetailBookmarkBtn() {
+  const btn = document.getElementById('detailBookmarkBtn');
+  if (!btn || state.detailId == null) return;
+  const isB = state.bookmarks.has(state.detailId);
+  btn.textContent = isB ? '★ Bookmarked' : '☆ Bookmark';
+  btn.style.color = isB ? 'var(--gold)' : '';
+  btn.style.borderColor = isB ? 'var(--gold-dim)' : '';
+}
+
+function updateBookmarkCount() {
+  const el = document.getElementById('bookmarkCount');
+  const count = state.bookmarks.size;
+  el.textContent = count;
+  el.classList.toggle('visible', count > 0);
+  document.getElementById('statBookmarks').textContent = count;
+}
+
+function rateCard(id, stars) {
+  state.ratings[id] = state.ratings[id] === stars ? 0 : stars;
+  saveRatings();
+  render();
+  if (document.getElementById('detailModal').classList.contains('open')) {
+    renderDetailRating(id);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   DETAIL MODAL
+   ════════════════════════════════════════════════════════════════ */
+function openDetail(id) {
+  const bp = BEST_PRACTICES.find(b => b.id === id);
+  if (!bp) return;
+  state.detailId = id;
+  document.getElementById('detailBadge').className = `cat-badge cat-${bp.category}`;
+  document.getElementById('detailBadge').textContent = CATEGORIES[bp.category].label;
+  document.getElementById('detailTitle').textContent = bp.title;
+  document.getElementById('detailDesc').textContent = bp.desc;
+  document.getElementById('detailMeta').innerHTML = `
+    <div class="detail-meta-item"><div class="detail-meta-key">Session</div><div class="detail-meta-val">Session ${bp.session}</div></div>
+    <div class="detail-meta-item"><div class="detail-meta-key">Contributor</div><div class="detail-meta-val">${esc(bp.contributor||'Team')}</div></div>
+    <div class="detail-meta-item"><div class="detail-meta-key">Source</div><div class="detail-meta-val">${esc(bp.source||'—')}</div></div>
+    <div class="detail-meta-item"><div class="detail-meta-key">Category</div><div class="detail-meta-val">${CATEGORIES[bp.category].label}</div></div>`;
+  document.getElementById('detailTags').innerHTML = (bp.tags||[]).map(t =>
+    `<span class="tag" onclick="closeModal('detailModal');filterByTag('${esc(t)}')">${esc(t)}</span>`).join('');
+  renderDetailRating(id);
+  updateDetailBookmarkBtn();
+  openModal('detailModal');
+}
+
+function renderDetailRating(id) {
+  const rating = state.ratings[id] || 0;
+  document.getElementById('detailRating').innerHTML = [1,2,3,4,5].map(n =>
+    `<button class="star-btn ${n <= rating ? 'filled' : ''}" onclick="rateCard(${id},${n})" style="font-size:22px" aria-label="Rate ${n} stars">★</button>`
+  ).join('') + `<span class="rating-avg" style="margin-left:8px">${rating > 0 ? rating + '/5' : 'Not rated'}</span>`;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ADD MODAL
+   ════════════════════════════════════════════════════════════════ */
+const ADD_BEST_PRACTICE_ENABLED = false; // Set to true to re-enable the Add Best Practice feature
+
+function openAddModal() {
+  if (!ADD_BEST_PRACTICE_ENABLED) {
+    toast('Adding new best practices is currently disabled. Contact the TTMATION admin.', '');
+    return;
+  }
+  openModal('addModal');
+}
+
+function submitBestPractice() {
+  const title  = document.getElementById('newTitle').value.trim();
+  const desc   = document.getElementById('newDesc').value.trim();
+  const cat    = document.getElementById('newCategory').value;
+  const contrib= document.getElementById('newContributor').value.trim();
+  const source = document.getElementById('newSource').value.trim();
+  const tagsRaw= document.getElementById('newTags').value.trim();
+
+  if (!title || !desc || !cat) {
+    toast('Please fill in Title, Description and Category', '');
+    return;
+  }
+
+  const newId = Math.max(...BEST_PRACTICES.map(b => b.id)) + 1;
+  const newBP = {
+    id: newId,
+    category: cat,
+    session: source.match(/\d+/) ? parseInt(source.match(/\d+/)[0]) : 0,
+    contributor: contrib || 'Team Contributor',
+    title, desc,
+    tags: tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [],
+    source: source || 'Team Contribution',
+    userAdded: true
+  };
+
+  BEST_PRACTICES.push(newBP);
+  saveUserBPs();
+  closeModal('addModal');
+  clearFormFields();
+  document.getElementById('statTotal').textContent = BEST_PRACTICES.length;
+  render();
+  toast('Best practice added! ✓', 'success');
+}
+
+function clearFormFields() {
+  ['newTitle','newDesc','newContributor','newSource','newTags'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('newCategory').value = '';
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MODAL HELPERS
+   ════════════════════════════════════════════════════════════════ */
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('modal-overlay')) {
+    closeModal(e.target.id);
+  }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    ['addModal','detailModal'].forEach(closeModal);
+  }
+});
+
+/* ════════════════════════════════════════════════════════════════
+   TOAST
+   ════════════════════════════════════════════════════════════════ */
+function toast(msg, type) {
+  const container = document.getElementById('toastContainer');
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  container.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   INIT
+   ════════════════════════════════════════════════════════════════ */
+async function init() {
+  await loadBestPracticesData();
+  loadStorage();
+  render();
+}
+init();
+
+/* ════════════════════════════════════════════════════════════════
+   ADD MODAL — TAB SWITCHING
+   ════════════════════════════════════════════════════════════════ */
+function switchAddTab(tab) {
+  document.getElementById('tabInsight').classList.toggle('active', tab === 'insight');
+  document.getElementById('tabExtract').classList.toggle('active', tab === 'extract');
+  document.getElementById('panelInsight').classList.toggle('active', tab === 'insight');
+  document.getElementById('panelExtract').classList.toggle('active', tab === 'extract');
+  if (tab === 'extract') resetExtractFlow();
+}
+
+/* ════════════════════════════════════════════════════════════════
+   EXTRACT FROM TRANSCRIPT WORKFLOW
+   ════════════════════════════════════════════════════════════════ */
+let extractState = {
+  rawText: '',
+  fullPrompt: '',
+  parsedItems: []
+};
+
+function resetExtractFlow() {
+  extractState = { rawText: '', fullPrompt: '', parsedItems: [] };
+  goToXStage(1);
+  document.getElementById('transcriptFile').value = '';
+  document.getElementById('uploadFileName').classList.remove('visible');
+  document.getElementById('btnReadFile').disabled = true;
+  document.getElementById('jsonPasteArea').value = '';
+  document.getElementById('parseStatus').className = 'parse-status';
+  document.getElementById('previewList').innerHTML = '';
+}
+
+function goToXStage(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('xStage'+i).classList.toggle('active', i === n);
+    const dot = document.getElementById('sdot'+i);
+    dot.classList.toggle('active', i === n);
+    dot.classList.toggle('done', i < n);
+    document.getElementById('slabel'+i).classList.toggle('active', i === n);
+  });
+  [1,2].forEach(i => {
+    document.getElementById('sline'+i).classList.toggle('done', i < n);
+  });
+}
+
+function handleFileSelect(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  document.getElementById('uploadFileLabel').textContent = file.name;
+  document.getElementById('uploadFileName').classList.add('visible');
+  document.getElementById('btnReadFile').disabled = false;
+}
+
+// Drag & drop support
+document.addEventListener('DOMContentLoaded', function() {
+  const area = document.getElementById('uploadArea');
+  if (!area) return;
+  area.addEventListener('dragover', e => { e.preventDefault(); area.classList.add('drag-over'); });
+  area.addEventListener('dragleave', () => area.classList.remove('drag-over'));
+  area.addEventListener('drop', e => {
+    e.preventDefault(); area.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      document.getElementById('transcriptFile').files = e.dataTransfer.files;
+      document.getElementById('uploadFileLabel').textContent = file.name;
+      document.getElementById('uploadFileName').classList.add('visible');
+      document.getElementById('btnReadFile').disabled = false;
+    }
+  });
+});
+
+async function readAndGeneratePrompt() {
+  const fileInput = document.getElementById('transcriptFile');
+  const file = fileInput.files[0];
+  if (!file) { toast('Please select a file first', ''); return; }
+
+  const btn = document.getElementById('btnReadFile');
+  btn.textContent = 'Reading…'; btn.disabled = true;
+
+  try {
+    let text = '';
+    if (file.name.endsWith('.docx')) {
+      const buf = await file.arrayBuffer();
+      const result = await mammoth.extractRawText({ arrayBuffer: buf });
+      text = result.value;
+    } else {
+      text = await file.text();
+    }
+
+    if (!text || text.trim().length < 50) {
+      toast('File appears empty or too short', ''); btn.textContent = 'Continue →'; btn.disabled = false; return;
+    }
+
+    extractState.rawText = text.trim();
+    extractState.fullPrompt = buildExtractionPrompt(text.trim());
+
+    // Show truncated preview (first 600 chars)
+    const preview = extractState.fullPrompt.length > 800
+      ? extractState.fullPrompt.slice(0, 800) + '\n\n… [full prompt with transcript copied to clipboard]'
+      : extractState.fullPrompt;
+    document.getElementById('promptPreview').textContent = preview;
+
+    goToXStage(2);
+  } catch(err) {
+    toast('Could not read file: ' + err.message, '');
+  }
+  btn.textContent = 'Continue →'; btn.disabled = false;
+}
+
+function buildExtractionPrompt(transcript) {
+  return `You are a knowledge extractor for Transform Together (TT), a UK boutique management consultancy running an internal AI upskilling programme called TTMATION.
+
+Analyse the meeting transcript below and extract EVERY best practice, tip, tool recommendation, lesson learned, and actionable insight mentioned by any speaker.
+
+For each item, return a JSON object with EXACTLY these fields:
+{
+  "title": "Concise actionable title, max 10 words",
+  "desc": "Full 2-4 sentence explanation — what the practice is, why it matters, when to use it.",
+  "category": "ONE of: prompting | context | testing | architecture | workflow | collaboration | models | mindset",
+  "contributor": "Speaker name if clearly identifiable, else Team Discussion",
+  "tags": ["3-5", "lowercase", "keywords"],
+  "source": "e.g. Session 3 Demo, or Team Q&A"
+}
+
+Categories:
+- prompting: Writing effective AI prompts
+- context: Setting up AI tools, skills, projects, memory
+- testing: QA, regression testing, bug fixing
+- architecture: Data organisation, hosting, tech decisions
+- workflow: Process, discovery, iteration
+- collaboration: Knowledge sharing, team dynamics
+- models: Which AI model to use and when
+- mindset: AI adoption philosophy, mental models
+
+Return ONLY a valid JSON array. No markdown code fences, no preamble, no trailing text. Start with [ and end with ].
+
+TRANSCRIPT:
+${transcript}`;
+}
+
+function copyPromptToClipboard() {
+  if (!extractState.fullPrompt) { toast('No prompt generated yet', ''); return; }
+  navigator.clipboard.writeText(extractState.fullPrompt).then(() => {
+    const btn = document.getElementById('copyBtnLabel');
+    btn.textContent = 'Copied! ✓';
+    setTimeout(() => { btn.textContent = 'Copy Full Prompt'; }, 2500);
+    toast('Full prompt copied to clipboard', 'gold');
+  }).catch(() => {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = extractState.fullPrompt;
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    toast('Prompt copied to clipboard', 'gold');
+  });
+}
+
+function parseJsonResponse() {
+  const raw = document.getElementById('jsonPasteArea').value.trim();
+  const status = document.getElementById('parseStatus');
+  if (!raw) { status.className = 'parse-status err'; status.textContent = 'Please paste Claude\'s JSON response first.'; return; }
+
+  // Strip markdown code fences if present
+  let cleaned = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '').trim();
+
+  try {
+    const items = JSON.parse(cleaned);
+    if (!Array.isArray(items) || items.length === 0) throw new Error('Expected a non-empty JSON array');
+
+    const valid = items.filter(it => it.title && it.desc);
+    if (valid.length === 0) throw new Error('No valid items found — each needs at least title and desc');
+
+    extractState.parsedItems = valid;
+    status.className = 'parse-status ok';
+    status.textContent = '✓ Found ' + valid.length + ' best practice' + (valid.length === 1 ? '' : 's') + '. Review and add below.';
+
+    renderPreviewCards(valid);
+    setTimeout(() => goToXStage(3), 400);
+  } catch(err) {
+    status.className = 'parse-status err';
+    status.textContent = '✗ Could not parse JSON: ' + err.message + '. Make sure you paste the full [ … ] array from Claude.';
+  }
+}
+
+const VALID_CATS = ['prompting','context','testing','architecture','workflow','collaboration','models','mindset'];
+
+function renderPreviewCards(items) {
+  const list = document.getElementById('previewList');
+  list.innerHTML = items.map((item, i) => {
+    const cat = VALID_CATS.includes(item.category) ? item.category : 'prompting';
+    const tagsStr = Array.isArray(item.tags) ? item.tags.join(', ') : (item.tags||'');
+    return `
+    <div class="preview-card selected" id="previewCard${i}">
+      <div class="preview-check">
+        <input type="checkbox" id="previewCheck${i}" checked onchange="updatePreviewSelection()">
+      </div>
+      <div class="preview-content">
+        <div class="preview-title">${esc(item.title||'Untitled')}</div>
+        <div class="preview-desc">${esc((item.desc||'').slice(0,180))}${(item.desc||'').length>180?'…':''}</div>
+        <div class="preview-footer">
+          <select class="preview-select" id="previewCat${i}" onchange="updatePreviewCard(${i})">
+            ${VALID_CATS.map(c => `<option value="${c}" ${c===cat?'selected':''}>${CATEGORIES[c].label}</option>`).join('')}
+          </select>
+          <span class="meta-pill" style="font-size:10px">${esc(item.contributor||'Team')}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  updatePreviewSelection();
+}
+
+function updatePreviewCard(i) {
+  const card = document.getElementById('previewCard'+i);
+  const checked = document.getElementById('previewCheck'+i).checked;
+  card.classList.toggle('selected', checked);
+}
+
+function updatePreviewSelection() {
+  const total = extractState.parsedItems.length;
+  let selected = 0;
+  extractState.parsedItems.forEach((_, i) => {
+    const chk = document.getElementById('previewCheck'+i);
+    const card = document.getElementById('previewCard'+i);
+    if (chk && chk.checked) { selected++; card.classList.add('selected'); }
+    else if (card) { card.classList.remove('selected'); }
+  });
+  document.getElementById('previewCount').innerHTML =
+    '<strong>' + selected + '</strong> of ' + total + ' selected to add';
+  const btn = document.getElementById('btnAddSelected');
+  btn.disabled = selected === 0;
+  btn.textContent = selected > 0
+    ? 'Add ' + selected + ' to Knowledge Base'
+    : 'Add Selected to Knowledge Base';
+}
+
+function addSelectedExtracted() {
+  const items = extractState.parsedItems;
+  let added = 0;
+  const maxId = Math.max(...BEST_PRACTICES.map(b => b.id), 0);
+
+  items.forEach((item, i) => {
+    const chk = document.getElementById('previewCheck'+i);
+    if (!chk || !chk.checked) return;
+    const cat = document.getElementById('previewCat'+i)?.value || item.category || 'mindset';
+    const validCat = VALID_CATS.includes(cat) ? cat : 'mindset';
+
+    BEST_PRACTICES.push({
+      id: maxId + added + 1,
+      category: validCat,
+      session: 0,
+      contributor: item.contributor || 'Team Contribution',
+      title: item.title || 'Untitled',
+      desc: item.desc || '',
+      tags: Array.isArray(item.tags) ? item.tags : (item.tags||'').split(',').map(t=>t.trim()).filter(Boolean),
+      source: item.source || 'Extracted from transcript',
+      userAdded: true
+    });
+    added++;
+  });
+
+  if (added === 0) { toast('No items selected', ''); return; }
+
+  saveUserBPs();
+  closeModal('addModal');
+  resetExtractFlow();
+  render();
+  toast('Added ' + added + ' best practice' + (added===1?'':'s') + ' to the knowledge base ✓', 'success');
+}
+
+</script>
+</body>
+</html>
